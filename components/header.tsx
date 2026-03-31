@@ -101,7 +101,7 @@ export function Header() {
                 // src="https://kachenje.co.tz/img/logo-big.png"
                 src="https://kachenje.co.tz/img/logo.png"
                 alt="Kachenje Law Firm"
-                style={{ height: isScrolled ? '56px' : '56px', width: 'auto' }}
+                style={{ height: isScrolled ? '50px' : '56px', width: 'auto' }}
                 // className={`transition-all duration-300 ${isScrolled ? 'brightness-0 invert' : ''}`}
                 className={`transition-all duration-300 ${isScrolled ? 'brert' : ''}`}
               />
@@ -179,7 +179,7 @@ export function Header() {
                 <span className="sr-only">Search</span>
               </Button>
               <Button variant="ghost" size="icon" className="text-white hover:text-accent hover:bg-transparent">
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5 lg:h-5 lg:w-5 md:h-6 md:w-6 sm:h-7 sm:w-7 h-8 w-8" />
                 <span className="sr-only">Menu</span>
               </Button>
             </div>
@@ -191,7 +191,7 @@ export function Header() {
               className="lg:hidden text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
