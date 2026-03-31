@@ -1,23 +1,24 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { Globe, Users, Newspaper } from "lucide-react"
 
 const features = [
   {
     icon: Globe,
     title: "Global Coverage",
-    description: "LOREM IPSUM DOLOR CONSECTETUR",
+    description: "Serving clients across Tanzania and beyond.",
   },
   {
     icon: Users,
     title: "Join Our Team",
-    description: "LOREM IPSUM DOLOR CONSECTETUR",
+    description: "Grow your legal career with us.",
   },
   {
     icon: Newspaper,
     title: "Press Releases",
-    description: "LOREM IPSUM DOLOR CONSECTETUR",
+    description: "Latest news and firm announcements.",
   },
 ]
 
@@ -41,12 +42,14 @@ export function Hero() {
             <p className="text-white/80 text-lg lg:text-xl mb-8 lg:mb-10 max-w-lg lg:max-w-xl">
               Experienced legal practitioners providing tailored solutions with requisite skills and expertise for today&apos;s legal needs.
             </p>
-            <Button
-              variant="outline"
-              className="border-accent text-foreground bg-accent hover:bg-accent/90 rounded-full px-8 lg:px-10 py-6 lg:py-7 text-sm lg:text-base font-medium tracking-wider"
-            >
-              MEET OUR TEAM
-            </Button>
+            <Link href="/attorneys">
+              <Button
+                variant="outline"
+                className="border-accent text-foreground bg-accent hover:bg-accent/90 rounded-full px-8 lg:px-10 py-6 lg:py-7 text-sm lg:text-base font-medium tracking-wider"
+              >
+                MEET OUR TEAM
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -69,10 +69,10 @@ export function Attorneys() {
                   </div>
                 </DialogContent>
               </Dialog>
-              
+
             )}
             <Link href="/attorneys">
-              <div className="relative h-80 lg:h-96 xl:h-[550px] overflow-hidden">
+              <div className="relative h-[550px] lg:h-[550px] xl:h-[550px] overflow-hidden">
                 <Image
                   src={attorney.image}
                   alt={attorney.name}

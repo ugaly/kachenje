@@ -1,6 +1,8 @@
+
 import Image from "next/image"
 import Link from "next/link"
-import { MessageSquare, ChevronRight, Calendar } from "lucide-react"
+import { MessageSquare, ChevronRight, Calendar, PlayCircle } from "lucide-react"
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"
 import { blogPosts } from "@/lib/blog-data"
 
 export function News() {
@@ -28,24 +30,88 @@ export function News() {
               key={item.slug}
               className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-border"
             >
-              {/* Image Container with fixed aspect ratio */}
-              <Link href={`/blog/${item.slug}`} className="block">
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-accent text-accent-foreground text-xs font-medium rounded">
-                      {item.categories[0]}
-                    </span>
+              {/* Image or Video Container with fixed aspect ratio */}
+              {index === 1 ? (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative aspect-[16/10] w-full group focus:outline-none">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <PlayCircle className="w-16 h-16 text-white/90 drop-shadow-lg group-hover:scale-110 transition-transform" />
+                      </span>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl w-full p-0 bg-black flex items-center justify-center aspect-video">
+                    <iframe
+                      width="800"
+                      height="450"
+                      src="https://www.youtube.com/embed/occycDAXmAA?si=jB9lc-bv5-Or9sUB&autoplay=1"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="w-full h-[250px] md:h-[450px] rounded-lg"
+                    ></iframe>
+                  </DialogContent>
+                </Dialog>
+              ) : index === 2 ? (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="relative aspect-[16/10] w-full group focus:outline-none">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading={index === 0 ? "eager" : "lazy"}
+                      />
+                      <span className="absolute inset-0 flex items-center justify-center bg-black/40">
+                        <PlayCircle className="w-16 h-16 text-white/90 drop-shadow-lg group-hover:scale-110 transition-transform" />
+                      </span>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl w-full p-0 bg-black flex items-center justify-center aspect-video">
+                    <iframe
+                      width="800"
+                      height="450"
+                      src="https://www.youtube.com/embed/CQAIlXAypLs?si=ieFNrQ_aUlNDci4y&autoplay=1"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      className="w-full h-[250px] md:h-[450px] rounded-lg"
+                    ></iframe>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <Link href={`/blog/${item.slug}`} className="block">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-accent text-accent-foreground text-xs font-medium rounded">
+                        {item.categories[0]}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              )}
               
               {/* Content */}
               <div className="p-6">

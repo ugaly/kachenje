@@ -4,14 +4,17 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Search, ChevronRight, Calendar, User, Tag, Grid3X3, ChevronLeft } from "lucide-react"
+import { Search, ChevronRight, Calendar, User, Tag, Grid3X3, ChevronLeft, PlayCircle } from "lucide-react"
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { blogPosts, categories, tags, archives } from "@/lib/blog-data"
+
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
+  const [videoOpen, setVideoOpen] = useState(false)
   const postsPerPage = 3
 
   const filteredPosts = blogPosts.filter((post) => {
@@ -30,7 +33,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 lg:py-32 bg-primary overflow-hidden">
+      <section className="relative pt-48 pb-24 lg:pt-48 lg:pb-32 bg-primary overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1920&q=80"
@@ -71,17 +74,67 @@ export default function BlogPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="bg-white border border-border rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow"
                   >
-                    {/* Post Image */}
-                    <Link href={`/blog/${post.slug}`}>
-                      <div className="relative aspect-[16/9] overflow-hidden">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover hover:scale-105 transition-transform duration-500"
-                        />
+                    {/* Post Image or Video */}
+                    {index === 0 ? (
+                      <div className="w-full flex justify-center items-center bg-black aspect-[16/9]">
+                        <iframe
+                          width="900"
+                          height="506"
+                          src="https://www.youtube.com/embed/CQAIlXAypLs?si=ieFNrQ_aUlNDci4y"
+                          title="YouTube video player"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                          className="w-full h-[300px] md:h-[506px] rounded-lg"
+                        ></iframe>
                       </div>
-                    </Link>
+                    ) : index === 1 ? (
+                      <Dialog open={videoOpen} onOpenChange={setVideoOpen}>
+                        <DialogTrigger asChild>
+                          <button
+                            className="relative aspect-[16/9] w-full group focus:outline-none"
+                            onClick={() => setVideoOpen(true)}
+                          >
+                            <Image
+                              src={post.image}
+                              alt={post.title}
+                              fill
+                              className="object-cover hover:scale-105 transition-transform duration-500"
+                            />
+                            <span className="absolute inset-0 flex items-center justify-center">
+                              <PlayCircle className="w-20 h-20 text-white/90 drop-shadow-lg group-hover:scale-110 transition-transform" />
+                            </span>
+                          </button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl w-full p-0 bg-black flex items-center justify-center aspect-video">
+                          {videoOpen && (
+                            <iframe
+                              width="900"
+                              height="506"
+                              src="https://www.youtube.com/embed/occycDAXmAA?si=jB9lc-bv5-Or9sUB&autoplay=1"
+                              title="YouTube video player"
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              allowFullScreen
+                              className="w-full h-[300px] md:h-[506px] rounded-lg"
+                            ></iframe>
+                          )}
+                        </DialogContent>
+                      </Dialog>
+                    ) : (
+                      <Link href={`/blog/${post.slug}`}>
+                        <div className="relative aspect-[16/9] overflow-hidden">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      </Link>
+                    )}
 
                     {/* Post Content */}
                     <div className="p-6 lg:p-8">

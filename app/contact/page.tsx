@@ -76,10 +76,10 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 lg:py-32 bg-primary overflow-hidden">
+      <section className="relative pt-48 pb-24 lg:pt-48 lg:pb-32 bg-primary overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+            src="https://images.pexels.com/photos/6077861/pexels-photo-6077861.jpeg"
             alt="Contact Us"
             fill
             loading="eager"

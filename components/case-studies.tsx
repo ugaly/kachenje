@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 
 const caseStudies = [
   {
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&q=80",
+    image: "https://images.pexels.com/photos/34073779/pexels-photo-34073779.jpeg",
     category: "Corporate",
     title: "Cross-Border M&A Transaction",
   },

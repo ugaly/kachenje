@@ -30,7 +30,7 @@ export default function PracticeAreasPage() {
             className="object-cover opacity-20"
           />
         </div>
-        <div className="relative z-10 container mx-auto px-4 lg:px-8 pt-32 lg:pt-40 pb-16 lg:pb-24">
+        <div className="relative z-10 container mx-auto px-4 lg:px-8 pt-48 lg:pt-48 pb-16 lg:pb-24">
           <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl mb-4">Areas of Practice</h1>
           <p className="text-white/80 text-lg lg:text-xl max-w-2xl">
             Comprehensive legal solutions tailored to meet your business and personal needs across diverse practice areas.
