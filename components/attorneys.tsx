@@ -69,6 +69,7 @@ export function Attorneys() {
                   </div>
                 </DialogContent>
               </Dialog>
+              
             )}
             <Link href="/attorneys">
               <div className="relative h-80 lg:h-96 xl:h-[550px] overflow-hidden">
