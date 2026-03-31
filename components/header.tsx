@@ -70,16 +70,16 @@ export function Header() {
             <div className="flex items-center gap-4 ml-auto">
               <div className="flex items-center gap-3">
                 <a href="#" className="hover:text-accent transition-colors" aria-label="Google Plus">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 10.4h3.6c-.1 1.5-.7 2.7-1.6 3.5-.9.8-2.1 1.2-3.4 1.2-1.4 0-2.6-.5-3.5-1.5-1-1-1.5-2.2-1.5-3.6s.5-2.6 1.5-3.6c1-.9 2.1-1.4 3.5-1.4 1.3 0 2.4.4 3.3 1.2l-1.3 1.3c-.5-.5-1.2-.8-2-.8-.9 0-1.6.3-2.2.9-.6.6-.9 1.4-.9 2.4s.3 1.8.9 2.4c.6.6 1.4.9 2.2.9.6 0 1.1-.1 1.5-.3.6-.3 1-.7 1.2-1.3H7.8v-1.3zm12.2.8v-1.6h-1.6v1.6h-1.6v1.6h1.6v1.6h1.6v-1.6h1.6v-1.6h-1.6z"/></svg>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 10.4h3.6c-.1 1.5-.7 2.7-1.6 3.5-.9.8-2.1 1.2-3.4 1.2-1.4 0-2.6-.5-3.5-1.5-1-1-1.5-2.2-1.5-3.6s.5-2.6 1.5-3.6c1-.9 2.1-1.4 3.5-1.4 1.3 0 2.4.4 3.3 1.2l-1.3 1.3c-.5-.5-1.2-.8-2-.8-.9 0-1.6.3-2.2.9-.6.6-.9 1.4-.9 2.4s.3 1.8.9 2.4c.6.6 1.4.9 2.2.9.6 0 1.1-.1 1.5-.3.6-.3 1-.7 1.2-1.3H7.8v-1.3zm12.2.8v-1.6h-1.6v1.6h-1.6v1.6h1.6v1.6h1.6v-1.6h1.6v-1.6h-1.6z" /></svg>
                 </a>
                 <a href="#" className="hover:text-accent transition-colors" aria-label="Facebook">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" /></svg>
                 </a>
                 <a href="#" className="hover:text-accent transition-colors" aria-label="Twitter">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" /></svg>
                 </a>
                 <a href="#" className="hover:text-accent transition-colors" aria-label="Vimeo">
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.4 7.03c-.1 2.2-1.63 5.2-4.6 9-.32.4-3.1 4.97-5.73 4.97-1.67 0-3.07-1.53-3.57-4.1-.63-3.33-1.33-5.83-2.1-7.5-.6-1.33-1.26-2-2-2-.16 0-.7.33-1.63 1l-1-1.27 3.5-3.1c1.5-1.33 2.7-2.03 3.6-2.1 1.9-.2 3.07 1.1 3.5 3.9.47 3.03.8 4.93 1 5.7.53 2.47 1.13 3.7 1.8 3.7.5 0 1.26-.8 2.26-2.4.97-1.6 1.5-2.83 1.57-3.67.13-1.4-.4-2.1-1.6-2.1-.57 0-1.17.13-1.8.4 1.2-3.9 3.47-5.8 6.83-5.7 2.5.07 3.67 1.7 3.5 4.87z"/></svg>
+                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.4 7.03c-.1 2.2-1.63 5.2-4.6 9-.32.4-3.1 4.97-5.73 4.97-1.67 0-3.07-1.53-3.57-4.1-.63-3.33-1.33-5.83-2.1-7.5-.6-1.33-1.26-2-2-2-.16 0-.7.33-1.63 1l-1-1.27 3.5-3.1c1.5-1.33 2.7-2.03 3.6-2.1 1.9-.2 3.07 1.1 3.5 3.9.47 3.03.8 4.93 1 5.7.53 2.47 1.13 3.7 1.8 3.7.5 0 1.26-.8 2.26-2.4.97-1.6 1.5-2.83 1.57-3.67.13-1.4-.4-2.1-1.6-2.1-.57 0-1.17.13-1.8.4 1.2-3.9 3.47-5.8 6.83-5.7 2.5.07 3.67 1.7 3.5 4.87z" /></svg>
                 </a>
               </div>
             </div>
@@ -88,11 +88,11 @@ export function Header() {
       </div>
 
       {/* Main Header */}
-      <div className={`transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#1a1a2e]/95 backdrop-blur-sm py-4' 
+      <div className={`transition-all duration-300 ${isScrolled
+          // ? 'bg-[#1a1a2e]/95 backdrop-blur-sm py-4' 
+          ? 'bg-primary backdrop-blur-sm py-4'
           : 'bg-transparent py-4'
-      }`}>
+        }`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -110,22 +110,22 @@ export function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
-                <div 
-                  key={item.name} 
+                <div
+                  key={item.name}
                   className="relative"
                   onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
                   <Link href={item.href}>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       className="text-white hover:text-accent hover:bg-transparent font-medium text-sm tracking-wide"
                     >
                       {item.name}
                       {item.hasDropdown && <ChevronDown className={`ml-1 h-3 w-3 transition-transform ${activeDropdown === item.name ? 'rotate-180' : ''}`} />}
                     </Button>
                   </Link>
-                  
+
                   {/* Mega Dropdown for Practice Areas */}
                   {item.hasDropdown && activeDropdown === item.name && (
                     <div className="absolute top-full left-0 pt-2">
@@ -149,8 +149,8 @@ export function Header() {
                           ))}
                         </div>
                         <div className="mt-4 pt-3 border-t border-border">
-                          <Link 
-                            href="/practice-areas" 
+                          <Link
+                            href="/practice-areas"
                             className="text-sm font-medium text-accent hover:text-accent/80 transition-colors"
                           >
                             View All Practice Areas →
@@ -169,9 +169,9 @@ export function Header() {
                 <ShoppingCart className="h-5 w-5" />
                 <span className="sr-only">Cart</span>
               </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
+              <Button
+                variant="ghost"
+                size="icon"
                 className="text-white hover:text-accent hover:bg-transparent"
                 onClick={() => setIsSearchOpen(true)}
               >
