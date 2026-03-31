@@ -11,42 +11,11 @@ import { attorneys as allAttorneys } from "@/lib/attorneys-data"
 // Show first 4 attorneys on homepage
 const featuredAttorneys = allAttorneys.slice(0, 4)
 
-export function Attorneys() {
-  return (
-    <section className="bg-secondary">
-      {/* Header */}
-      <div className="pt-16 lg:pt-20 pb-16 lg:pb-20 border-b border-border">
-        <div className="container mx-auto px-4 lg:px-8 xl:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground italic">
-              Meet Our Qualified Attorneys
-            </h2>
-            <div className="lg:border-l lg:border-border lg:pl-12">
-              <p className="text-muted-foreground lg:text-lg mb-6">
-                Our team of experienced legal professionals is dedicated to providing exceptional legal services tailored to your needs. With expertise across multiple practice areas, we deliver results.
-              </p>
-              <Link href="/attorneys">
-                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6">
-                  VIEW ALL ATTORNEYS
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Attorneys Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {featuredAttorneys.slice(0, 4).map((attorney) => (
-          <AttorneyCard key={attorney.id} attorney={attorney} />
-        ))}
-      </div>
-
-// Card component for homepage attorneys
-function AttorneyCard({ attorney }) {
+// Card component for homepage attorneys - Moved outside of the main component
+function AttorneyCard({ attorney }: { attorney: any }) {
   const [isMobile, setIsMobile] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
@@ -76,7 +45,7 @@ function AttorneyCard({ attorney }) {
             <button
               className={
                 isMobile
-    export function Attorneys() { 
+                  ? "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
                   : "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
               }
               aria-label="Show QR code"
@@ -110,7 +79,6 @@ function AttorneyCard({ attorney }) {
           <Image
             src={attorney.image}
             alt={attorney.name}
-    // Card component for homepage attorneys
             fill
             style={{objectPosition: 'top'}}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -138,6 +106,37 @@ function AttorneyCard({ attorney }) {
     </div>
   )
 }
+
+export function Attorneys() {
+  return (
+    <section className="bg-secondary">
+      {/* Header */}
+      <div className="pt-16 lg:pt-20 pb-16 lg:pb-20 border-b border-border">
+        <div className="container mx-auto px-4 lg:px-8 xl:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground italic">
+              Meet Our Qualified Attorneys
+            </h2>
+            <div className="lg:border-l lg:border-border lg:pl-12">
+              <p className="text-muted-foreground lg:text-lg mb-6">
+                Our team of experienced legal professionals is dedicated to providing exceptional legal services tailored to your needs. With expertise across multiple practice areas, we deliver results.
+              </p>
+              <Link href="/attorneys">
+                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6">
+                  VIEW ALL ATTORNEYS
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Attorneys Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredAttorneys.slice(0, 4).map((attorney) => (
+          <AttorneyCard key={attorney.id} attorney={attorney} />
+        ))}
+      </div>
     </section>
   )
 }

@@ -9,6 +9,118 @@ import { QRCodeSVG } from "qrcode.react"
 import { Button } from "@/components/ui/button"
 import { attorneys, categories, type Attorney } from "@/lib/attorneys-data"
 
+// Move AttorneyCard component outside of the main component
+function AttorneyCard({ attorney }: { attorney: Attorney }) {
+  const [isMobile, setIsMobile] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (!isMobile) return
+    const node = ref.current
+    if (!node) return
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setIsFocused(entry.isIntersecting && entry.intersectionRatio > 0.5),
+      { threshold: [0.5] }
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [isMobile])
+
+  return (
+    <div ref={ref} className="relative overflow-hidden rounded-lg bg-secondary group cursor-pointer">
+      {/* QR code icon for Nzaro Nuhu Kachenje */}
+      {attorney.id === "nzaro-kachenje" && (
+        <Dialog>
+          <DialogTrigger asChild>
+            <button
+              className={
+                isMobile
+                  ? "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
+                  : "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
+              }
+              aria-label="Show QR code"
+              onClick={e => e.stopPropagation()}
+              type="button"
+            >
+              <QrCode className="w-6 h-6 text-accent" />
+            </button>
+          </DialogTrigger>
+          <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
+            <div className="flex flex-col items-center gap-2 w-full">
+              <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
+              <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
+            </div>
+            <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
+              <QRCodeSVG value="https://card-seven-pearl.vercel.app/13E8FD" size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+            </div>
+            <div className="flex flex-col items-center gap-1 mt-2">
+              <span className="font-semibold text-primary">Nzaro Nuhu Kachenje</span>
+              <span className="text-xs text-muted-foreground">Managing Partner</span>
+            </div>
+            <div className="mt-4 text-center text-sm text-muted-foreground">
+              <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
+              <span>to instantly view the digital business card.</span>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
+      {/* Image */}
+      <div className="relative aspect-[3/4] overflow-hidden">
+        <Image
+          src={attorney.image}
+          alt={attorney.name}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          loading="lazy"
+          className={
+            isMobile
+              ? `object-cover grayscale${isFocused ? ' grayscale-0' : ''} transition-all duration-500`
+              : 'object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105'
+          }
+        />
+        <div className={
+          isMobile
+            ? `absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent${isFocused ? ' opacity-0' : ' opacity-100'} transition-opacity duration-300`
+            : 'absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+        } />
+        {/* Eye Icon - Top Right */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+          <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-accent hover:text-white transition-colors">
+            <svg className="h-5 w-5 text-primary group-hover:text-primary" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.5"/></svg>
+          </div>
+        </div>
+        {/* Hover Overlay Content - Bottom Categories */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="flex flex-wrap gap-2">
+            {attorney.categories.slice(0, 2).map((cat) => (
+              <span key={cat} className="px-2 py-1 text-xs bg-white/90 backdrop-blur-sm text-primary rounded font-medium">
+                {cat}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Info */}
+      <div className="p-5 text-center border-t-2 border-transparent group-hover:border-accent transition-colors">
+        <h3 className="font-serif text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
+          {attorney.name}
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          {attorney.role}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export function AttorneysListing() {
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedAttorney, setSelectedAttorney] = useState<Attorney | null>(null)
@@ -160,117 +272,6 @@ export function AttorneysListing() {
                 </motion.div>
               ))}
             </AnimatePresence>
-          // Card component for attorneys listing
-          function AttorneyCard({ attorney }) {
-            const [isMobile, setIsMobile] = useState(false)
-            const [isFocused, setIsFocused] = useState(false)
-            const ref = useRef(null)
-
-            useEffect(() => {
-              const checkMobile = () => setIsMobile(window.innerWidth < 1024)
-              checkMobile()
-              window.addEventListener('resize', checkMobile)
-              return () => window.removeEventListener('resize', checkMobile)
-            }, [])
-
-            useEffect(() => {
-              if (!isMobile) return
-              const node = ref.current
-              if (!node) return
-              const observer = new window.IntersectionObserver(
-                ([entry]) => setIsFocused(entry.isIntersecting && entry.intersectionRatio > 0.5),
-                { threshold: [0.5] }
-              )
-              observer.observe(node)
-              return () => observer.disconnect()
-            }, [isMobile])
-
-            return (
-              <div ref={ref} className="relative overflow-hidden rounded-lg bg-secondary group cursor-pointer">
-                {/* QR code icon for Nzaro Nuhu Kachenje */}
-                {attorney.id === "nzaro-kachenje" && (
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button
-                        className={
-                          isMobile
-                            ? "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
-                            : "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
-                        }
-                        aria-label="Show QR code"
-                        onClick={e => e.stopPropagation()}
-                        type="button"
-                      >
-                        <QrCode className="w-6 h-6 text-accent" />
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
-                      <div className="flex flex-col items-center gap-2 w-full">
-                        <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-                        <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
-                      </div>
-                      <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
-                        <QRCodeSVG value="https://card-seven-pearl.vercel.app/13E8FD" size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
-                      </div>
-                      <div className="flex flex-col items-center gap-1 mt-2">
-                        <span className="font-semibold text-primary">Nzaro Nuhu Kachenje</span>
-                        <span className="text-xs text-muted-foreground">Managing Partner</span>
-                      </div>
-                      <div className="mt-4 text-center text-sm text-muted-foreground">
-                        <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
-                        <span>to instantly view the digital business card.</span>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                )}
-                {/* Image */}
-                <div className="relative aspect-[3/4] overflow-hidden">
-                  <Image
-                    src={attorney.image}
-                    alt={attorney.name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    loading="lazy"
-                    className={
-                      isMobile
-                        ? `object-cover grayscale${isFocused ? ' grayscale-0' : ''} transition-all duration-500`
-                        : 'object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105'
-                    }
-                  />
-                  <div className={
-                    isMobile
-                      ? `absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent${isFocused ? ' opacity-0' : ' opacity-100'} transition-opacity duration-300`
-                      : 'absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'
-                  } />
-                  {/* Eye Icon - Top Right */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-accent hover:text-white transition-colors">
-                      <svg className="h-5 w-5 text-primary group-hover:text-primary" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.5"/></svg>
-                    </div>
-                  </div>
-                  {/* Hover Overlay Content - Bottom Categories */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="flex flex-wrap gap-2">
-                      {attorney.categories.slice(0, 2).map((cat) => (
-                        <span key={cat} className="px-2 py-1 text-xs bg-white/90 backdrop-blur-sm text-primary rounded font-medium">
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                {/* Info */}
-                <div className="p-5 text-center border-t-2 border-transparent group-hover:border-accent transition-colors">
-                  <h3 className="font-serif text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
-                    {attorney.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {attorney.role}
-                  </p>
-                </div>
-              </div>
-            )
-          }
           </motion.div>
           
           {filteredAttorneys.length === 0 && (
