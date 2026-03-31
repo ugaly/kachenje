@@ -101,7 +101,7 @@ export function Header() {
                 // src="https://kachenje.co.tz/img/logo-big.png"
                 src="https://kachenje.co.tz/img/logo.png"
                 alt="Kachenje Law Firm"
-                style={{ height: isScrolled ? '50px' : '56px', width: 'auto' }}
+                style={{ height: isScrolled ? '48px' : '56px', width: 'auto' }}
                 // className={`transition-all duration-300 ${isScrolled ? 'brightness-0 invert' : ''}`}
                 className={`transition-all duration-300 ${isScrolled ? 'brert' : ''}`}
               />
@@ -188,10 +188,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white"
+              className="lg:hidden text-white p-0 min-w-[48px] min-h-[48px] w-12 h-12 flex items-center justify-center"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              {mobileMenuOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+              {mobileMenuOpen ? <X className="h-10 w-10" /> : <Menu className="h-10 w-10" />}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
@@ -204,43 +204,47 @@ export function Header() {
               <nav className="flex flex-col gap-1">
                 {navItems.map((item) => (
                   <div key={item.name} className="border-b border-border">
-                    <div
-                      className="flex items-center justify-between cursor-pointer select-none"
-                      onClick={() => {
-                        if (item.hasDropdown) {
-                          setMobileDropdown(mobileDropdown === item.name ? null : item.name)
-                        } else {
-                          setMobileMenuOpen(false)
-                        }
-                      }}
-                    >
-                      <span className="py-3 text-foreground hover:text-accent font-medium text-base tracking-wide block w-full">
-                        {item.name}
-                      </span>
-                      {item.hasDropdown && (
-                        <ChevronDown className={`h-5 w-5 transition-transform ${mobileDropdown === item.name ? 'rotate-180 text-accent' : ''}`} />
-                      )}
-                    </div>
-                    {item.hasDropdown && mobileDropdown === item.name && (
-                      <div className="pl-4 pb-2 animate-in fade-in slide-in-from-top-2 duration-200 bg-muted/40 rounded-b">
-                        {practiceAreas.map((subItem) => (
-                          <Link
-                            key={subItem.slug}
-                            href={`/practice-areas/${subItem.slug}`}
-                            className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                        <Link
-                          href="/practice-areas"
-                          className="block py-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
+                    {item.hasDropdown ? (
+                      <>
+                        <div
+                          className="flex items-center justify-between cursor-pointer select-none"
+                          onClick={() => setMobileDropdown(mobileDropdown === item.name ? null : item.name)}
                         >
-                          View All Practice Areas →
-                        </Link>
-                      </div>
+                          <span className="py-3 text-foreground hover:text-accent font-medium text-base tracking-wide block w-full">
+                            {item.name}
+                          </span>
+                          <ChevronDown className={`h-5 w-5 transition-transform ${mobileDropdown === item.name ? 'rotate-180 text-accent' : ''}`} />
+                        </div>
+                        {mobileDropdown === item.name && (
+                          <div className="pl-4 pb-2 animate-in fade-in slide-in-from-top-2 duration-200 bg-muted/40 rounded-b">
+                            {practiceAreas.map((subItem) => (
+                              <Link
+                                key={subItem.slug}
+                                href={`/practice-areas/${subItem.slug}`}
+                                className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                            <Link
+                              href="/practice-areas"
+                              className="block py-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              View All Practice Areas →
+                            </Link>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="py-3 text-foreground hover:text-accent font-medium text-base tracking-wide block w-full"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
                     )}
                   </div>
                 ))}
