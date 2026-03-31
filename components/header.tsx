@@ -98,10 +98,12 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="shrink-0 block transition-all duration-300">
               <img
-                src="https://kachenje.co.tz/img/logo-big.png"
+                // src="https://kachenje.co.tz/img/logo-big.png"
+                src="https://kachenje.co.tz/img/logo.png"
                 alt="Kachenje Law Firm"
                 style={{ height: isScrolled ? '40px' : '56px', width: 'auto' }}
-                className={`transition-all duration-300 ${isScrolled ? 'brightness-0 invert' : ''}`}
+                // className={`transition-all duration-300 ${isScrolled ? 'brightness-0 invert' : ''}`}
+                className={`transition-all duration-300 ${isScrolled ? 'brert' : ''}`}
               />
             </Link>
 
