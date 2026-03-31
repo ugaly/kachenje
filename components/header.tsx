@@ -90,7 +90,7 @@ export function Header() {
       {/* Main Header */}
       <div className={`transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#1a1a2e]/95 backdrop-blur-sm py-2' 
+          ? 'bg-[#1a1a2e]/95 backdrop-blur-sm py-4' 
           : 'bg-transparent py-4'
       }`}>
         <div className="container mx-auto px-4">
@@ -101,7 +101,7 @@ export function Header() {
                 // src="https://kachenje.co.tz/img/logo-big.png"
                 src="https://kachenje.co.tz/img/logo.png"
                 alt="Kachenje Law Firm"
-                style={{ height: isScrolled ? '40px' : '56px', width: 'auto' }}
+                style={{ height: isScrolled ? '56px' : '56px', width: 'auto' }}
                 // className={`transition-all duration-300 ${isScrolled ? 'brightness-0 invert' : ''}`}
                 className={`transition-all duration-300 ${isScrolled ? 'brert' : ''}`}
               />
