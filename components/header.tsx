@@ -33,7 +33,15 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  // Reset mobile dropdown when menu closes
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      setMobileDropdown(null)
+    }
+  }, [mobileMenuOpen])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +96,7 @@ export function Header() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 block transition-all duration-300">
+            <Link href="/" className="shrink-0 block transition-all duration-300">
               <img
                 src="https://kachenje.co.tz/img/logo-big.png"
                 alt="Kachenje Law Firm"
@@ -189,30 +197,47 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-background border-t border-border">
+          <div className="lg:hidden bg-background border-t border-border shadow-xl">
             <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col gap-2">
+              <nav className="flex flex-col gap-1">
                 {navItems.map((item) => (
-                  <div key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="py-2 text-foreground hover:text-accent font-medium text-sm tracking-wide border-b border-border block"
-                      onClick={() => !item.hasDropdown && setMobileMenuOpen(false)}
+                  <div key={item.name} className="border-b border-border">
+                    <div
+                      className="flex items-center justify-between cursor-pointer select-none"
+                      onClick={() => {
+                        if (item.hasDropdown) {
+                          setMobileDropdown(mobileDropdown === item.name ? null : item.name)
+                        } else {
+                          setMobileMenuOpen(false)
+                        }
+                      }}
                     >
-                      {item.name}
-                    </Link>
-                    {item.hasDropdown && (
-                      <div className="pl-4 py-2 space-y-2">
+                      <span className="py-3 text-foreground hover:text-accent font-medium text-base tracking-wide block w-full">
+                        {item.name}
+                      </span>
+                      {item.hasDropdown && (
+                        <ChevronDown className={`h-5 w-5 transition-transform ${mobileDropdown === item.name ? 'rotate-180 text-accent' : ''}`} />
+                      )}
+                    </div>
+                    {item.hasDropdown && mobileDropdown === item.name && (
+                      <div className="pl-4 pb-2 animate-in fade-in slide-in-from-top-2 duration-200 bg-muted/40 rounded-b">
                         {practiceAreas.map((subItem) => (
                           <Link
                             key={subItem.slug}
                             href={`/practice-areas/${subItem.slug}`}
-                            className="block py-1 text-sm text-muted-foreground hover:text-accent"
+                            className="block py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {subItem.name}
                           </Link>
                         ))}
+                        <Link
+                          href="/practice-areas"
+                          className="block py-2 text-sm font-medium text-accent hover:text-accent/80 transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          View All Practice Areas →
+                        </Link>
                       </div>
                     )}
                   </div>

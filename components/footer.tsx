@@ -35,7 +35,7 @@ export function Footer() {
       </div>
       
       {/* Main Footer */}
-      <div className="relative z-10 container mx-auto px-4 py-16 lg:py-20">
+      <div className="relative z-10 container mx-auto px-4 py-10 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* About Us */}
           <div>
