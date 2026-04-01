@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { Scale, UserCheck, Gavel } from "lucide-react"
 
 const stats = [
-  { value: 98, suffix: "%", label: "Cases Success" },
+  { value: 30, suffix: "%", label: "Cases Success" },
   { value: 15, suffix: "%", label: "Countersuits Filed" },
-  { value: 358, suffix: "+", label: "Happy Clients" },
+  { value: 122, suffix: "+", label: "Happy Clients" },
   { value: 38, suffix: "%", label: "Cases Dismissed" },
 ]
 
