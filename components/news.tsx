@@ -190,6 +190,8 @@ import { MessageSquare, ChevronRight, Calendar, PlayCircle } from "lucide-react"
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog"
 import { blogPosts } from "@/lib/blog-data"
 
+const commentCounts = [10, 1, 6]
+
 export function News() {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -233,15 +235,15 @@ export function News() {
               {index === 1 ? (
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="relative aspect-[16/10] w-full group focus:outline-none">
+                    <button className="relative aspect-16/10 w-full group focus:outline-none">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        quality={80}
+                        loading="lazy"
+                        quality={75}
                       />
                       <span className="absolute inset-0 flex items-center justify-center bg-black/40">
                         <PlayCircle className="w-16 h-16 text-white/90 drop-shadow-lg" />
@@ -258,7 +260,7 @@ export function News() {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
-                      className="w-full h-[250px] md:h-[450px] rounded-lg"
+                      className="h-62.5 w-full rounded-lg md:h-112.5"
                       loading="lazy"
                     ></iframe>
                   </DialogContent>
@@ -266,15 +268,15 @@ export function News() {
               ) : index === 2 ? (
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="relative aspect-[16/10] w-full group focus:outline-none">
+                    <button className="relative aspect-16/10 w-full group focus:outline-none">
                       <Image
                         src={item.image}
                         alt={item.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover"
-                        loading={index === 0 ? "eager" : "lazy"}
-                        quality={80}
+                        loading="lazy"
+                        quality={75}
                       />
                       <span className="absolute inset-0 flex items-center justify-center bg-black/40">
                         <PlayCircle className="w-16 h-16 text-white/90 drop-shadow-lg" />
@@ -291,22 +293,22 @@ export function News() {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
-                      className="w-full h-[250px] md:h-[450px] rounded-lg"
+                      className="h-62.5 w-full rounded-lg md:h-112.5"
                       loading="lazy"
                     ></iframe>
                   </DialogContent>
                 </Dialog>
               ) : (
                 <Link href={`/blog/${item.slug}`} className="block">
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-16/10 overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      quality={80}
+                      loading="eager"
+                      quality={75}
                     />
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 bg-accent text-accent-foreground text-xs font-medium rounded">
@@ -331,7 +333,7 @@ export function News() {
                   </span>
                   <span className="flex items-center gap-1">
                     <MessageSquare className="h-3.5 w-3.5" />
-                    {Math.floor(Math.random() * 10) + 1}
+                    {commentCounts[index]}
                   </span>
                 </div>
                 
@@ -364,7 +366,7 @@ export function News() {
         <div className="text-center mt-12">
           <Link 
             href="/blog"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full text-sm font-medium tracking-wider bg-primary/90"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary/90 text-primary-foreground rounded-full text-sm font-medium tracking-wider"
           >
             VIEW ALL NEWS
             <ChevronRight className="h-4 w-4" />
