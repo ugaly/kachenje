@@ -9,6 +9,8 @@ import { QRCodeSVG } from "qrcode.react"
 import { Button } from "@/components/ui/button"
 import { attorneys, categories, type Attorney } from "@/lib/attorneys-data"
 
+const nzaroQrLink = "https://card-seven-pearl.vercel.app/13E8FD"
+
 // Move AttorneyCard component outside of the main component
 function AttorneyCard({ attorney }: { attorney: Attorney }) {
   const [isMobile, setIsMobile] = useState(false)
@@ -59,8 +61,14 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
               <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
             </div>
             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
-              <QRCodeSVG value="https://card-seven-pearl.vercel.app/13E8FD" size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+              <QRCodeSVG value={nzaroQrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
             </div>
+            {/* <a href={nzaroQrLink} target="_blank" rel="noreferrer" className="w-full">
+              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                <Eye className="h-4 w-4 mr-2" />
+                Open Link
+              </Button>
+            </a> */}
             <div className="flex flex-col items-center gap-1 mt-2">
               <span className="font-semibold text-primary">Nzaro Nuhu Kachenje</span>
               <span className="text-xs text-muted-foreground">Managing Partner</span>
