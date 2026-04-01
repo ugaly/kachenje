@@ -427,7 +427,7 @@ export function News() {
   const [isMobile, setIsMobile] = useState(false)
   const [position, setPosition] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -460,7 +460,7 @@ export function News() {
     animationRef.current = requestAnimationFrame(animate)
     
     return () => {
-      if (animationRef.current) {
+      if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current)
       }
     }
@@ -693,17 +693,17 @@ export function News() {
             {clientLogos.map((logo, index) => (
               <div
                 key={`first-${index}`}
-                className="flex-shrink-0 mx-8"
+                className="mx-8 shrink-0"
               >
-                <div className="relative h-20 w-48 md:h-24 md:w-56 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className="relative h-24 w-56 overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg md:h-28 md:w-64">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    sizes="(max-width: 768px) 192px, 224px"
-                    className="object-contain p-3"
+                    sizes="(max-width: 768px) 224px, 256px"
+                    className="object-contain p-4"
                     loading="lazy"
-                    quality={80}
+                    quality={75}
                   />
                 </div>
               </div>
@@ -712,17 +712,17 @@ export function News() {
             {clientLogos.map((logo, index) => (
               <div
                 key={`second-${index}`}
-                className="flex-shrink-0 mx-8"
+                className="mx-8 shrink-0"
               >
-                <div className="relative h-20 w-48 md:h-24 md:w-56 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className="relative h-24 w-56 overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg md:h-28 md:w-64">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    sizes="(max-width: 768px) 192px, 224px"
-                    className="object-contain p-3"
+                    sizes="(max-width: 768px) 224px, 256px"
+                    className="object-contain p-4"
                     loading="lazy"
-                    quality={80}
+                    quality={75}
                   />
                 </div>
               </div>
@@ -731,17 +731,17 @@ export function News() {
             {clientLogos.map((logo, index) => (
               <div
                 key={`third-${index}`}
-                className="flex-shrink-0 mx-8"
+                className="mx-8 shrink-0"
               >
-                <div className="relative h-20 w-48 md:h-24 md:w-56 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div className="relative h-24 w-56 overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg md:h-28 md:w-64">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    sizes="(max-width: 768px) 192px, 224px"
-                    className="object-contain p-3"
+                    sizes="(max-width: 768px) 224px, 256px"
+                    className="object-contain p-4"
                     loading="lazy"
-                    quality={80}
+                    quality={75}
                   />
                 </div>
               </div>
