@@ -61,7 +61,14 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
               <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
             </div>
             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
-              <QRCodeSVG value={nzaroQrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+              <div className="relative inline-block">
+                <QRCodeSVG value={nzaroQrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="h-8 w-8 overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
+                    <img src={attorney.image} alt={attorney.name} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </div>
             </div>
             {/* <a href={nzaroQrLink} target="_blank" rel="noreferrer" className="w-full">
               <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
