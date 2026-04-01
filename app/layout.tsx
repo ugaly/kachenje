@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Source_Sans_3, Playfair_Display } from 'next/font/google'
 // import { Analytics } from '@vercel/analytics/next'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/footer'
+import { AppShell } from '@/components/app-shell'
 import './globals.css'
 
 const sourceSans = Source_Sans_3({
@@ -46,9 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sourceSans.variable} ${playfair.variable} font-sans antialiased`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <AppShell>{children}</AppShell>
         {/* <Analytics /> */}
       </body>
     </html>
