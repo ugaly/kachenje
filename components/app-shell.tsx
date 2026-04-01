@@ -113,41 +113,23 @@ export function AppShell({ children }: AppShellProps) {
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    const hasShown = sessionStorage.getItem("app_loader_shown") === "1"
-    if (hasShown) {
-      setIsLoading(false)
-      return
-    }
-
     const finishLoading = () => {
       if (finishedRef.current) return
       finishedRef.current = true
       setIsLeaving(true)
 
       window.setTimeout(() => {
-        sessionStorage.setItem("app_loader_shown", "1")
         setIsLoading(false)
       }, 800)
     }
 
-    const minimumDisplay = window.setTimeout(() => {
-      if (document.readyState === "complete") {
-        finishLoading()
-      }
-    }, 1200)
+    const minimumDisplay = window.setTimeout(finishLoading, 8000)
 
-    const fallback = window.setTimeout(finishLoading, 3000)
-
-    if (document.readyState === "complete") {
-      finishLoading()
-    } else {
-      window.addEventListener("load", finishLoading, { once: true })
-    }
+    const fallback = window.setTimeout(finishLoading, 8500)
 
     return () => {
       window.clearTimeout(minimumDisplay)
       window.clearTimeout(fallback)
-      window.removeEventListener("load", finishLoading)
     }
   }, [])
 
