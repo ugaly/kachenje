@@ -72,7 +72,14 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
               <span className="text-accent-foreground text-sm mb-2">Get more details about {attorney.name}</span>
             </div>
             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
-              <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+              <div className="relative inline-block">
+                <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="h-8 w-8 overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
+                    <img src={attorney.image} alt={attorney.name} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="flex flex-col items-center gap-1 mt-2">
               <span className="font-semibold text-primary">{attorney.name}</span>
