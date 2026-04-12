@@ -155,7 +155,7 @@ export const attorneys: Attorney[] = [
     role: "Administrator Assistant",
     email: "administrator@kachenje.co.tz",
     phone: "+255 222 123 456",
-    image: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80",
+    image: "/assets/photo/MARGARITA.jpg",
     bio: "Margarita is an Administrative Assistant with proven experience in office management and operational support within the legal sector. Skilled in coordinating schedules, managing documentation, and facilitating smooth communication, ensuring efficient day-to-day operations and timely project support for the firm. Her attention to detail and organizational excellence make her an invaluable member of the Kachenje Advocates team.",
     expertise: [
       "Office Management",
