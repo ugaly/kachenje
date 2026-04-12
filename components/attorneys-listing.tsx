@@ -16,6 +16,7 @@ const attorneyQrLinks: Partial<Record<Attorney["id"], string>> = {
   "ruqaiya-al-harthy": `${cardBaseUrl}/8575EE`,
   "latifa-delaware": `${cardBaseUrl}/B85998`,
   "ernest-urio": `${cardBaseUrl}/0CFB33`,
+  "margarita-patrick": `${cardBaseUrl}/C75CCE`,
 }
 
 // Move AttorneyCard component outside of the main component
