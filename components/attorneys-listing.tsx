@@ -3,19 +3,27 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Mail, Phone, Scale, GraduationCap, Briefcase, Globe, Award, ChevronRight, Filter, Eye, QrCode } from "lucide-react"
+import { X, Mail, Phone, Scale, GraduationCap, Briefcase, Globe, Award, ChevronRight, Filter, QrCode } from "lucide-react"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
 import { QRCodeSVG } from "qrcode.react"
 import { Button } from "@/components/ui/button"
 import { attorneys, categories, type Attorney } from "@/lib/attorneys-data"
 
-const nzaroQrLink = "https://card-seven-pearl.vercel.app/13E8FD"
+const cardBaseUrl = "https://card-seven-pearl.vercel.app"
+
+const attorneyQrLinks: Partial<Record<Attorney["id"], string>> = {
+  "nzaro-kachenje": `${cardBaseUrl}/13E8FD`,
+  "ruqaiya-al-harthy": `${cardBaseUrl}/8575EE`,
+  "latifa-delaware": `${cardBaseUrl}/B85998`,
+  "ernest-urio": `${cardBaseUrl}/0CFB33`,
+}
 
 // Move AttorneyCard component outside of the main component
 function AttorneyCard({ attorney }: { attorney: Attorney }) {
   const [isMobile, setIsMobile] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const qrLink = attorneyQrLinks[attorney.id]
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
@@ -38,8 +46,8 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
 
   return (
     <div ref={ref} className="relative overflow-hidden rounded-lg bg-secondary group cursor-pointer">
-      {/* QR code icon for Nzaro Nuhu Kachenje */}
-      {attorney.id === "nzaro-kachenje" && (
+      {/* QR code icon for attorneys with digital business cards */}
+      {qrLink && (
         <Dialog>
           <DialogTrigger asChild>
             <button
@@ -58,11 +66,11 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
           <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
             <div className="flex flex-col items-center gap-2 w-full">
               <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-              <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
+              <span className="text-accent-foreground text-sm mb-2">Get more details about {attorney.name}</span>
             </div>
             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
               <div className="relative inline-block">
-                <QRCodeSVG value={nzaroQrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+                <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <div className="h-8 w-8 overflow-hidden rounded-full bg-white ring-1 ring-primary/20">
                     <img src={attorney.image} alt={attorney.name} className="h-full w-full object-cover" />
@@ -70,15 +78,15 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
                 </div>
               </div>
             </div>
-            {/* <a href={nzaroQrLink} target="_blank" rel="noreferrer" className="w-full">
+            {/* <a href={qrLink} target="_blank" rel="noreferrer" className="w-full">
               <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                 <Eye className="h-4 w-4 mr-2" />
                 Open Link
               </Button>
             </a> */}
             <div className="flex flex-col items-center gap-1 mt-2">
-              <span className="font-semibold text-primary">Nzaro Nuhu Kachenje</span>
-              <span className="text-xs text-muted-foreground">Managing Partner</span>
+              <span className="font-semibold text-primary">{attorney.name}</span>
+              <span className="text-xs text-muted-foreground">{attorney.role}</span>
             </div>
             <div className="mt-4 text-center text-sm text-muted-foreground">
               <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>

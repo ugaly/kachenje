@@ -9,6 +9,15 @@ import { QrCode, X, Mail, Phone, Scale, GraduationCap, Briefcase, Globe, Award }
 import { QRCodeSVG } from "qrcode.react"
 import { attorneys as allAttorneys, type Attorney } from "@/lib/attorneys-data"
 
+const cardBaseUrl = "https://card-seven-pearl.vercel.app"
+
+const attorneyQrLinks: Partial<Record<Attorney["id"], string>> = {
+  "nzaro-kachenje": `${cardBaseUrl}/13E8FD`,
+  "ruqaiya-al-harthy": `${cardBaseUrl}/8575EE`,
+  "latifa-delaware": `${cardBaseUrl}/B85998`,
+  "ernest-urio": `${cardBaseUrl}/0CFB33`,
+}
+
 // Show first 4 attorneys on homepage
 const featuredAttorneys = allAttorneys.slice(0, 4)
 
@@ -17,6 +26,7 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
   const [isMobile, setIsMobile] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+  const qrLink = attorneyQrLinks[attorney.id]
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024)
@@ -39,8 +49,8 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
 
   return (
     <div ref={ref} className="relative group cursor-pointer" onClick={onClick}>
-      {/* QR code icon for Nzaro Nuhu Kachenje */}
-      {attorney.id === "nzaro-kachenje" && (
+      {/* QR code icon for attorneys with digital business cards */}
+      {qrLink && (
         <Dialog>
           <DialogTrigger asChild>
             <button
@@ -59,14 +69,14 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
           <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
             <div className="flex flex-col items-center gap-2 w-full">
               <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-              <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
+              <span className="text-accent-foreground text-sm mb-2">Get more details about {attorney.name}</span>
             </div>
             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
-              <QRCodeSVG value="https://card-seven-pearl.vercel.app/13E8FD" size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
+              <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
             </div>
             <div className="flex flex-col items-center gap-1 mt-2">
-              <span className="font-semibold text-primary">Nzaro Nuhu Kachenje</span>
-              <span className="text-xs text-muted-foreground">Managing Partner</span>
+              <span className="font-semibold text-primary">{attorney.name}</span>
+              <span className="text-xs text-muted-foreground">{attorney.role}</span>
             </div>
             <div className="mt-4 text-center text-sm text-muted-foreground">
               <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
