@@ -7,22 +7,22 @@ import { Button } from "@/components/ui/button"
 
 const caseStudies = [
   {
-    image: "https://images.pexels.com/photos/34073779/pexels-photo-34073779.jpeg",
+    image: "https://images.unsplash.com/photo-1645562249772-970ddfe33cd9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJhbnNhY3Rpb24lMjBsYXdzfGVufDB8fDB8fHww",
     category: "Corporate",
     title: "Cross-Border M&A Transaction",
   },
   {
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80",
+    image: "https://media.istockphoto.com/id/2197642452/photo/golden-scales-of-justice-and-gavel-on-financial-chart-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=iORpepEBH0cI8yx7MDhG5IbQvrDhKJ8SJa3CuOQ4K5k=",
     category: "Banking",
     title: "Financial Regulatory Compliance",
   },
   {
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80",
+    image: "https://media.istockphoto.com/id/2045620685/photo/justice-gavel-and-law-books-on-table-in-office-for-court-trial-legislation-or-fair.webp?a=1&b=1&s=612x612&w=0&k=20&c=PbOBRXZZVOsS03uqsuI_TuGaS7c0vfa4xbUuCt-hxkw=",
     category: "Litigation",
     title: "Commercial Dispute Resolution",
   },
   {
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80",
+    image: "https://media.istockphoto.com/id/1254541892/photo/house-auction-to-law.webp?a=1&b=1&s=612x612&w=0&k=20&c=ozOsCa0LKxY2MNrnvbGwWZ5SgijN3l2Di7KXty9bBUI=",
     category: "Real Estate",
     title: "Property Development Deal",
   },
