@@ -639,7 +639,7 @@ export function Stats() {
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "url('https://images.pexels.com/photos/6077964/pexels-photo-6077964.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+              "url('https://media.istockphoto.com/id/690153060/photo/stack-of-law-books-in-front-of-scales-of-justice.jpg?b=1&s=612x612&w=0&k=20&c=ThpV_mNr3Fl3YjOblmLMhdAnPS4eM3r3C8A4i-3Xkns=')",
             backgroundSize: "cover",
             backgroundPosition: "center 0px",
             backgroundRepeat: "no-repeat",

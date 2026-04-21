@@ -25,7 +25,7 @@ export function Footer() {
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.pexels.com/photos/4427617/pexels-photo-4427617.jpeg"
+          src="https://images.pexels.com/photos/36207460/pexels-photo-36207460.jpeg"
           alt="Footer background"
           fill
           loading="eager"

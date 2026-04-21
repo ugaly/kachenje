@@ -125,10 +125,9 @@ const features = [
 export function Hero() {
   const images = useMemo(
     () => [
-      "https://images.pexels.com/photos/6077381/pexels-photo-6077381.jpeg",
-      "https://images.pexels.com/photos/6077162/pexels-photo-6077162.jpeg",
-      "https://images.pexels.com/photos/3869646/pexels-photo-3869646.jpeg",
-      "https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg",
+      "https://kachenje.co.tz/img/parallax/landing.jpg",
+      // "https://images.pexels.com/photos/159832/justice-law-case-hearing-159832.jpeg",
+      // "https://images.pexels.com/photos/6077091/pexels-photo-6077091.jpeg"
     ],
     [],
   )

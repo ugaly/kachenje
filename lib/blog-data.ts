@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Corporate Governance</h2>
       <p>Good corporate governance is essential for sustainable business operations. This includes proper board structures, shareholder rights, and transparent decision-making processes.</p>
     `,
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1618771623063-6c3faa854a61?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9vayUyMGxhd3N8ZW58MHx8MHx8fDA%3D",
     author: {
       name: "Nzaro Buberwa",
       avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80"
@@ -55,7 +55,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Employee Rights</h2>
       <p>Workers in Tanzania are entitled to various protections under the law, including fair treatment, safe working conditions, and proper compensation for their services.</p>
     `,
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80",
+    image: "https://media.istockphoto.com/id/168313957/photo/labor-law.webp?a=1&b=1&s=612x612&w=0&k=20&c=xX8HkjpSKQVDK74m3VXwAf0NHGmcCzcApyoKu7MZPWA=",
     author: {
       name: "Ruqaiya Mwinyi",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80"
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
       <h2>Due Diligence</h2>
       <p>Before any real estate transaction, thorough due diligence is crucial. This includes title searches, survey verification, and assessment of any encumbrances on the property.</p>
     `,
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    image: "https://media.istockphoto.com/id/1296686762/photo/house-property-auction-after-divorce.webp?a=1&b=1&s=612x612&w=0&k=20&c=Ijqcgmnty8k7mqUmr3PoetFvh4Kup7Jysu4x1fMSKeU=",
     author: {
       name: "Ernest Kileo",
       avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80"
