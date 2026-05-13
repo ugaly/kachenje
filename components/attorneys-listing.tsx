@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Mail, Phone, Scale, GraduationCap, Briefcase, Globe, Award, ChevronRight, Filter, QrCode } from "lucide-react"
+import { X, Mail, Phone, Scale, GraduationCap, Briefcase, Globe, Award, ChevronRight, QrCode } from "lucide-react"
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog"
 import { QRCodeSVG } from "qrcode.react"
 import { Button } from "@/components/ui/button"
-import { attorneys, categories, type Attorney } from "@/lib/attorneys-data"
+import { attorneys, type Attorney } from "@/lib/attorneys-data"
 
 const cardBaseUrl = "https://card-seven-pearl.vercel.app"
 
@@ -54,22 +54,22 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
             <button
               className={
                 isMobile
-                  ? "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
-                  : "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
+                  ? "absolute top-4 left-4 z-20 bg-white/90 hover:bg-muted p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
+                  : "absolute top-4 left-4 z-20 bg-white/90 hover:bg-muted p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
               }
               aria-label="Show QR code"
               onClick={e => e.stopPropagation()}
               type="button"
             >
-              <QrCode className="w-6 h-6 text-accent" />
+              <QrCode className="w-6 h-6 text-foreground" />
             </button>
           </DialogTrigger>
-          <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
+          <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-background shadow-2xl border border-border">
             <div className="flex flex-col items-center gap-2 w-full">
               <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-              <span className="text-accent-foreground text-sm mb-2">Get more details about {attorney.name}</span>
+              <span className="text-muted-foreground text-sm mb-2">Get more details about {attorney.name}</span>
             </div>
-            <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
+            <div className="rounded-xl bg-muted/50 p-3 shadow border border-border">
               <div className="relative inline-block">
                 <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -80,7 +80,7 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
               </div>
             </div>
             {/* <a href={qrLink} target="_blank" rel="noreferrer" className="w-full">
-              <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+              <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                 <Eye className="h-4 w-4 mr-2" />
                 Open Link
               </Button>
@@ -90,7 +90,7 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
               <span className="text-xs text-muted-foreground">{attorney.role}</span>
             </div>
             <div className="mt-4 text-center text-sm text-muted-foreground">
-              <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
+              <span className="block font-medium text-foreground mb-1">Point your camera or QR app</span>
               <span>to instantly view the digital business card.</span>
             </div>
           </DialogContent>
@@ -117,7 +117,7 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
         } />
         {/* Eye Icon - Top Right */}
         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-          <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-accent hover:text-white transition-colors">
+          <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-muted transition-colors">
             <svg className="h-5 w-5 text-primary group-hover:text-primary" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M1.5 12s4-7.5 10.5-7.5S22.5 12 22.5 12s-4 7.5-10.5 7.5S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.5"/></svg>
           </div>
         </div>
@@ -133,7 +133,7 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
         </div>
       </div>
       {/* Info */}
-      <div className="p-5 text-center border-t-2 border-transparent group-hover:border-accent transition-colors">
+      <div className="p-5 text-center border-t-2 border-transparent group-hover:border-foreground/20 transition-colors">
         <h3 className="font-serif text-lg text-foreground mb-1 group-hover:text-primary transition-colors">
           {attorney.name}
         </h3>
@@ -146,28 +146,16 @@ function AttorneyCard({ attorney }: { attorney: Attorney }) {
 }
 
 export function AttorneysListing() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
   const [selectedAttorney, setSelectedAttorney] = useState<Attorney | null>(null)
-  const [filteredAttorneys, setFilteredAttorneys] = useState(attorneys)
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
-  useEffect(() => {
-    if (selectedCategory === "All") {
-      setFilteredAttorneys(attorneys)
-    } else {
-      setFilteredAttorneys(attorneys.filter(a => a.categories.includes(selectedCategory)))
-    }
-  }, [selectedCategory])
-
-  // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedAttorney) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset"
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset"
     }
   }, [selectedAttorney])
 
@@ -176,119 +164,45 @@ export function AttorneysListing() {
       {/* Hero Section */}
       <section className="relative pt-48 pb-20 bg-primary">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
             <nav className="flex items-center gap-2 text-sm text-white/60 mb-6">
-              <a href="/" className="hover:text-white transition-colors">Home</a>
+              <a href="/" className="hover:text-white transition-colors">
+                Home
+              </a>
               <ChevronRight className="h-4 w-4" />
-              <span className="text-white">Our Attorneys</span>
+              <span className="text-white">Our Team</span>
             </nav>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
-              Meet Our Legal Team
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6 tracking-tight">
+              Our Team
             </h1>
-            <p className="text-white/80 text-lg max-w-2xl">
-              Our team of experienced legal professionals is dedicated to providing exceptional legal services tailored to your needs.
+            <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
+              Experienced legal professionals dedicated to clear communication and strong outcomes for our clients.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-6 lg:py-8 bg-secondary border-b border-border sticky top-0 z-40">
-        <div className="container mx-auto px-4">
-          {/* Desktop Filter - Improved Layout */}
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-4 mb-4">
-              <Filter className="h-5 w-5 text-accent" />
-              <span className="text-sm font-medium text-foreground">Filter by Practice Area</span>
-              <div className="flex-1 h-px bg-border" />
-              <span className="text-sm text-muted-foreground">{filteredAttorneys.length} Attorneys</span>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    selectedCategory === category
-                      ? 'bg-primary text-white shadow-lg shadow-primary/25'
-                      : 'bg-background border border-border text-foreground hover:border-accent hover:text-accent hover:shadow-md'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          {/* Mobile Filter */}
-          <div className="lg:hidden">
-            <div className="flex items-center gap-3 mb-3">
-              <Filter className="h-5 w-5 text-accent" />
-              <span className="text-sm font-medium text-foreground">Filter by Practice Area</span>
-            </div>
-            
-            <button
-              className="flex items-center justify-between w-full px-4 py-3 bg-background border border-border rounded-lg"
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
-            >
-              <span className="text-sm font-medium">{selectedCategory}</span>
-              <ChevronRight className={`h-4 w-4 transition-transform ${isFilterOpen ? 'rotate-90' : ''}`} />
-            </button>
-            
-            <AnimatePresence>
-              {isFilterOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="overflow-hidden"
-                >
-                  <div className="flex flex-wrap gap-2 pt-3">
-                    {categories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => {
-                          setSelectedCategory(category)
-                          setIsFilterOpen(false)
-                        }}
-                        className={`px-4 py-2 text-sm rounded-full transition-all ${
-                          selectedCategory === category
-                            ? 'bg-primary text-white'
-                            : 'bg-background border border-border text-foreground'
-                        }`}
-                      >
-                        {category}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
-      {/* Attorneys Grid */}
+      {/* Team Grid */}
       <section className="py-16 lg:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-          >
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
             <AnimatePresence mode="popLayout">
-              {filteredAttorneys.map((attorney, index) => (
+              {attorneys.map((attorney, index) => (
                 <motion.div
                   key={attorney.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.25, delay: index * 0.04 }}
                   className="group cursor-pointer"
                   onClick={() => setSelectedAttorney(attorney)}
                 >
@@ -297,19 +211,6 @@ export function AttorneysListing() {
               ))}
             </AnimatePresence>
           </motion.div>
-          
-          {filteredAttorneys.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-muted-foreground text-lg">No attorneys found in this category.</p>
-              <Button 
-                variant="outline" 
-                className="mt-4"
-                onClick={() => setSelectedCategory("All")}
-              >
-                View All Attorneys
-              </Button>
-            </div>
-          )}
         </div>
       </section>
 
@@ -355,7 +256,7 @@ export function AttorneysListing() {
                   <h2 className="font-serif text-2xl text-white mb-2">
                     {selectedAttorney.name}
                   </h2>
-                  <p className="text-accent mb-6">{selectedAttorney.role}</p>
+                  <p className="text-muted-foreground mb-6">{selectedAttorney.role}</p>
                   
                   {/* Contact Info */}
                   <div className="space-y-4">
@@ -363,14 +264,14 @@ export function AttorneysListing() {
                       href={`mailto:${selectedAttorney.email}`}
                       className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                     >
-                      <Mail className="h-5 w-5 text-accent" />
+                      <Mail className="h-5 w-5 text-foreground" />
                       <span className="text-sm">{selectedAttorney.email}</span>
                     </a>
                     <a 
                       href={`tel:${selectedAttorney.phone}`}
                       className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                     >
-                      <Phone className="h-5 w-5 text-accent" />
+                      <Phone className="h-5 w-5 text-foreground" />
                       <span className="text-sm">{selectedAttorney.phone}</span>
                     </a>
                   </div>
@@ -413,7 +314,7 @@ export function AttorneysListing() {
                   {/* Bio */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Scale className="h-5 w-5 text-accent" />
+                      <Scale className="h-5 w-5 text-foreground" />
                       About
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -424,7 +325,7 @@ export function AttorneysListing() {
                   {/* Practice Areas */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Briefcase className="h-5 w-5 text-accent" />
+                      <Briefcase className="h-5 w-5 text-foreground" />
                       Areas of Expertise
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -442,13 +343,13 @@ export function AttorneysListing() {
                   {/* Education */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <GraduationCap className="h-5 w-5 text-accent" />
+                      <GraduationCap className="h-5 w-5 text-foreground" />
                       Education
                     </h3>
                     <ul className="space-y-3">
                       {selectedAttorney.education.map((edu) => (
                         <li key={edu} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-accent mt-2" />
+                          <div className="w-2 h-2 rounded-full bg-foreground/40 mt-2" />
                           <span className="text-muted-foreground">{edu}</span>
                         </li>
                       ))}
@@ -458,13 +359,13 @@ export function AttorneysListing() {
                   {/* Experience */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Briefcase className="h-5 w-5 text-accent" />
+                      <Briefcase className="h-5 w-5 text-foreground" />
                       Experience
                     </h3>
                     <ul className="space-y-3">
                       {selectedAttorney.experience.map((exp) => (
                         <li key={exp} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-accent mt-2" />
+                          <div className="w-2 h-2 rounded-full bg-foreground/40 mt-2" />
                           <span className="text-muted-foreground">{exp}</span>
                         </li>
                       ))}
@@ -477,16 +378,12 @@ export function AttorneysListing() {
                       <p className="text-sm text-muted-foreground mb-3">Practice Areas:</p>
                       <div className="flex flex-wrap gap-2">
                         {selectedAttorney.categories.map((cat) => (
-                          <button
+                          <span
                             key={cat}
-                            onClick={() => {
-                              setSelectedCategory(cat)
-                              setSelectedAttorney(null)
-                            }}
-                            className="px-3 py-1 text-sm bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground rounded-full transition-colors"
+                            className="rounded-full border border-border bg-muted/60 px-3 py-1 text-sm text-foreground"
                           >
                             {cat}
-                          </button>
+                          </span>
                         ))}
                       </div>
                     </div>

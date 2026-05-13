@@ -400,7 +400,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ChevronRight, MapPin, Phone, Mail, Clock, Send, CheckCircle, Building, Globe, MessageCircle, Linkedin, Twitter, Facebook, Instagram, Share2 } from "lucide-react"
+import { ChevronRight, MapPin, Phone, Mail, Clock, Send, CheckCircle, Building, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const contactInfo = [
@@ -423,54 +423,6 @@ const contactInfo = [
     icon: Clock,
     title: "Working Hours",
     details: ["Monday - Friday: 8:00 AM - 5:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"]
-  }
-]
-
-const socialPlatforms = [
-  {
-    name: "WhatsApp",
-    icon: MessageCircle,
-    color: "bg-[#25D366]",
-    hoverColor: "hover:bg-[#128C7E]",
-    url: "https://wa.me/255754285547",
-    username: "+255 754 285 547",
-    description: "Quick chat support"
-  },
-  {
-    name: "LinkedIn",
-    icon: Linkedin,
-    color: "bg-[#0077B5]",
-    hoverColor: "hover:bg-[#005582]",
-    url: "https://linkedin.com/company/kachenje-law-firm",
-    username: "Kachenje Law Firm",
-    description: "Professional network"
-  },
-  {
-    name: "X (Twitter)",
-    icon: Twitter,
-    color: "bg-[#000000]",
-    hoverColor: "hover:bg-[#1DA1F2]",
-    url: "https://twitter.com/kachenjelaw",
-    username: "@kachenjelaw",
-    description: "Latest updates"
-  },
-  {
-    name: "Facebook",
-    icon: Facebook,
-    color: "bg-[#1877F2]",
-    hoverColor: "hover:bg-[#0E5DBA]",
-    url: "https://facebook.com/kachenjelawfirm",
-    username: "Kachenje Law Firm",
-    description: "Follow us"
-  },
-  {
-    name: "Instagram",
-    icon: Instagram,
-    color: "bg-gradient-to-r from-[#F58529] via-[#DD2A7B] to-[#8134AF]",
-    hoverColor: "hover:scale-110",
-    url: "https://instagram.com/kachenjelaw",
-    username: "@kachenjelaw",
-    description: "Visual stories"
   }
 ]
 
@@ -557,8 +509,8 @@ export default function ContactPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow group"
               >
-                <div className="w-14 h-14 bg-accent/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-accent transition-colors">
-                  <info.icon className="h-6 w-6 text-accent group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mb-4 group-hover:bg-muted/80 transition-colors">
+                  <info.icon className="h-6 w-6 text-foreground group-hover:text-foreground transition-colors" />
                 </div>
                 <h3 className="font-serif text-lg text-foreground mb-3">{info.title}</h3>
                 <div className="space-y-1">
@@ -701,7 +653,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 text-base"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-base"
                   >
                     {isSubmitting ? (
                       <>
@@ -751,7 +703,7 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Building className="h-5 w-5 text-accent" />
+                      <Building className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Main Office</h4>
@@ -760,7 +712,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-5 w-5 text-accent" />
+                      <Phone className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Call Us</h4>
@@ -769,7 +721,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-accent" />
+                      <Mail className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Email Us</h4>
@@ -778,7 +730,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Globe className="h-5 w-5 text-accent" />
+                      <Globe className="h-5 w-5 text-white" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Website</h4>
@@ -789,14 +741,14 @@ export default function ContactPage() {
               </div>
 
               {/* Emergency Contact */}
-              <div className="bg-accent/10 border border-accent/20 rounded-lg p-6">
+              <div className="rounded-lg border border-border bg-muted/40 p-6">
                 <h4 className="font-serif text-lg text-foreground mb-2">Need Urgent Legal Assistance?</h4>
                 <p className="text-muted-foreground text-sm mb-4">
                   For urgent legal matters, please call our emergency line directly.
                 </p>
                 <a 
                   href="tel:+255754285547" 
-                  className="inline-flex items-center gap-2 text-accent font-medium hover:underline"
+                  className="inline-flex items-center gap-2 font-medium text-foreground hover:underline"
                 >
                   <Phone className="h-4 w-4" />
                   +255 754 285 547
@@ -806,140 +758,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Social Media Section - New Attractive Section */}
-      <section className="py-20 lg:py-24 bg-gradient-to-br from-primary via-primary/95 to-primary overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-serif text-3xl lg:text-4xl text-white mb-4">
-              Connect With Us
-            </h2>
-            <p className="text-white/70 max-w-2xl mx-auto">
-              Follow us on social media for legal insights, firm updates, and to stay connected with our community
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {socialPlatforms.map((platform, index) => (
-              <motion.a
-                key={platform.name}
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`group relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm p-6 text-center transition-all duration-300 hover:shadow-2xl ${platform.hoverColor}`}
-              >
-                {/* Animated background gradient */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/20 to-transparent" />
-                
-                {/* Icon Container */}
-                <div className={`relative w-20 h-20 mx-auto mb-4 rounded-full ${platform.color} flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
-                  <platform.icon className="h-10 w-10 text-white" />
-                </div>
-
-                {/* Platform Name */}
-                <h3 className="font-serif text-xl text-white mb-2 relative z-10">
-                  {platform.name}
-                </h3>
-
-                {/* Username/Handle */}
-                <p className="text-white/70 text-sm mb-2 relative z-10">
-                  {platform.username}
-                </p>
-
-                {/* Description */}
-                <p className="text-white/50 text-xs relative z-10">
-                  {platform.description}
-                </p>
-
-                {/* Follow Button */}
-                <div className="mt-4 inline-flex items-center gap-2 text-accent text-sm font-medium bg-white/20 px-4 py-2 rounded-full group-hover:bg-white group-hover:text-primary transition-all duration-300">
-                  <span>Follow</span>
-                  <Share2 className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
-                </div>
-
-                {/* Decorative shine effect */}
-                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shine" />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* Social Media Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 flex flex-wrap justify-center gap-8"
-          >
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">500+</div>
-              <div className="text-white/60 text-sm">Followers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">50+</div>
-              <div className="text-white/60 text-sm">Legal Insights</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">24/7</div>
-              <div className="text-white/60 text-sm">Community Support</div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Animated particles background */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${3 + Math.random() * 4}s`,
-              }}
-            />
-          ))}
-        </div>
-      </section>
-
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @keyframes shine {
-            100% {
-              left: 200%;
-            }
-          }
-          .animate-shine {
-            animation: shine 0.8s ease-out;
-          }
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px);
-              opacity: 0;
-            }
-            50% {
-              transform: translateY(-20px);
-              opacity: 0.5;
-            }
-          }
-          .animate-float {
-            animation: float 4s ease-in-out infinite;
-          }
-        `
-      }} />
     </>
   )
 }

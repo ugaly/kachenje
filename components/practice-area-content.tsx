@@ -48,16 +48,16 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
         </div>
         <div className="relative z-10 container mx-auto px-4 lg:px-8 pt-32 lg:pt-40 pb-16 lg:pb-24">
           <div className="flex items-center gap-2 text-white/60 text-sm mb-6">
-            <Link href="/" className="hover:text-accent transition-colors">Home</Link>
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="h-4 w-4" />
-            <Link href="/practice-areas" className="hover:text-accent transition-colors">Practice Areas</Link>
+            <Link href="/practice-areas" className="hover:text-white transition-colors">Practice Areas</Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-accent">{area.title}</span>
+            <span className="text-white/90">{area.title}</span>
           </div>
           
           <div className="flex items-start gap-6">
-            <div className="hidden lg:flex h-20 w-20 rounded-lg bg-accent/20 items-center justify-center flex-shrink-0">
-              <IconComponent className="h-10 w-10 text-accent" />
+            <div className="hidden lg:flex h-20 w-20 rounded-lg bg-white/10 items-center justify-center flex-shrink-0">
+              <IconComponent className="h-10 w-10 text-white" />
             </div>
             <div>
               <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl mb-4">{area.title}</h1>
@@ -88,26 +88,10 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
                       key={service}
                       className="flex items-start gap-3 p-4 bg-secondary rounded-lg hover:bg-secondary/80 transition-colors group"
                     >
-                      <div className="h-6 w-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-accent/30 transition-colors">
-                        <Check className="h-3.5 w-3.5 text-accent" />
+                      <div className="h-6 w-6 rounded-full bg-muted flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-muted/80 transition-colors">
+                        <Check className="h-3.5 w-3.5 text-foreground" />
                       </div>
                       <span className="text-foreground font-medium">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Statistics */}
-              <div className="bg-primary text-white p-8 lg:p-12 rounded-lg">
-                <h3 className="font-serif text-xl lg:text-2xl mb-8">Our Track Record</h3>
-                <div className="grid grid-cols-3 gap-6">
-                  {area.highlights.map((highlight, index) => (
-                    <div 
-                      key={highlight.label}
-                      className={`text-center ${index < 2 ? 'border-r border-white/20' : ''}`}
-                    >
-                      <div className="text-3xl lg:text-4xl font-light text-accent mb-2">{highlight.value}</div>
-                      <div className="text-sm text-white/60">{highlight.label}</div>
                     </div>
                   ))}
                 </div>
@@ -116,9 +100,9 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
               {/* CTA Section */}
               <div className="mt-12 p-8 lg:p-10 bg-secondary rounded-lg border border-border">
                 <h3 className="font-serif text-xl lg:text-2xl text-foreground mb-4">Need Legal Assistance?</h3>
-                <p className="text-muted-foreground mb-6">Our team of experienced attorneys is ready to help you navigate your legal challenges.</p>
+                <p className="text-muted-foreground mb-6">Our team of experienced advocates is ready to help you navigate your legal challenges.</p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8">
+                  <Button className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90">
                     <Phone className="h-4 w-4 mr-2" />
                     Call Us Now
                   </Button>
@@ -156,11 +140,11 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
                       >
                         <div className={`h-10 w-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
                           isActive 
-                            ? 'bg-accent/20' 
-                            : 'bg-secondary group-hover:bg-accent/20'
+                            ? 'bg-white/15' 
+                            : 'bg-secondary group-hover:bg-muted'
                         }`}>
                           <AreaIcon className={`h-5 w-5 transition-colors ${
-                            isActive ? 'text-accent' : 'text-muted-foreground group-hover:text-accent'
+                            isActive ? 'text-white' : 'text-muted-foreground group-hover:text-foreground'
                           }`} />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -172,8 +156,8 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
                         </div>
                         <ArrowRight className={`h-4 w-4 flex-shrink-0 transition-all ${
                           isActive 
-                            ? 'text-accent opacity-100' 
-                            : 'text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-accent'
+                            ? 'text-white opacity-100' 
+                            : 'text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-foreground'
                         } ${isHovered && !isActive ? 'translate-x-1' : ''}`} />
                       </Link>
                     )
@@ -185,11 +169,11 @@ export function PracticeAreaContent({ area, allAreas }: PracticeAreaContentProps
                   <h4 className="font-serif text-lg mb-3">Get Expert Advice</h4>
                   <p className="text-white/70 text-sm mb-4">Speak with our specialists today.</p>
                   <div className="space-y-2 text-sm">
-                    <a href="tel:+255123456789" className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors">
+                    <a href="tel:+255222115729" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
                       <Phone className="h-4 w-4" />
-                      +255 123 456 789
+                      +255 22 211 5729
                     </a>
-                    <a href="mailto:info@kachenje.co.tz" className="flex items-center gap-2 text-accent hover:text-accent/80 transition-colors">
+                    <a href="mailto:info@kachenje.co.tz" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
                       <Mail className="h-4 w-4" />
                       info@kachenje.co.tz
                     </a>

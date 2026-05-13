@@ -6,7 +6,7 @@ import { Quote } from "lucide-react"
 
 const testimonials = [
   {
-    quote: "Kachenje Law Firm provided exceptional representation for our company during a complex merger. Their expertise in corporate law and attention to detail made the entire process seamless.",
+    quote: "Kachenje Advocate provided exceptional representation for our company during a complex merger. Their expertise in corporate law and attention to detail made the entire process seamless.",
     name: "James Mwangi",
     handle: "CEO, TechVentures Ltd",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",

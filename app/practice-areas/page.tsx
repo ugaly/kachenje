@@ -13,7 +13,7 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
 }
 
 export const metadata = {
-  title: "Areas of Practice | Kachenje Law Firm",
+  title: "Areas of Practice | Kachenje Advocate",
   description: "Explore our comprehensive legal services across multiple practice areas including arbitration, banking, corporate services, and more.",
 }
 
@@ -49,18 +49,18 @@ export default function PracticeAreasPage() {
                 <Link
                   key={area.slug}
                   href={`/practice-areas/${area.slug}`}
-                  className="group bg-white border border-border rounded-lg p-6 lg:p-8 hover:shadow-xl hover:border-accent/50 transition-all duration-300"
+                  className="group bg-white border border-border rounded-lg p-6 lg:p-8 hover:shadow-xl hover:border-foreground/15 transition-all duration-300"
                 >
-                  <div className="h-14 w-14 rounded-lg bg-secondary flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                    <IconComponent className="h-7 w-7 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <div className="h-14 w-14 rounded-lg bg-secondary flex items-center justify-center mb-6 group-hover:bg-muted transition-colors">
+                    <IconComponent className="h-7 w-7 text-muted-foreground group-hover:text-foreground transition-colors" />
                   </div>
-                  <h3 className="font-serif text-xl lg:text-2xl text-foreground mb-3 group-hover:text-accent transition-colors">
+                  <h3 className="font-serif text-xl lg:text-2xl text-foreground mb-3 group-hover:text-foreground transition-colors">
                     {area.title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {area.shortDescription}
                   </p>
-                  <div className="flex items-center text-accent font-medium text-sm">
+                  <div className="flex items-center text-foreground font-medium text-sm">
                     Learn More
                     <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-2 transition-transform" />
                   </div>
@@ -82,7 +82,7 @@ export default function PracticeAreasPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-4 font-medium transition-colors"
+            className="inline-flex items-center rounded-full bg-primary px-8 py-4 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Contact Us Today
             <ArrowRight className="h-5 w-5 ml-2" />

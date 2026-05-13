@@ -46,10 +46,10 @@ export function CaseStudies() {
   // }
 
   return (
-    <section className="pt-16 lg:pt-24 pb-0 bg-background overflow-hidden relative">
+    <section className="pt-6 pb-0 lg:pt-8 bg-background overflow-hidden relative">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-8 lg:mb-10">
           <h2 className="font-serif text-3xl lg:text-4xl xl:text-5xl text-foreground mb-4 lg:mb-6">
             Recent Case Studies
           </h2>
@@ -81,9 +81,9 @@ export function CaseStudies() {
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors" />
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-6">
-                  <span className="text-sm text-accent mb-2">{study.category}</span>
+                  <span className="mb-2 text-sm text-white/80">{study.category}</span>
                   <h3 className="font-serif text-xl lg:text-2xl text-center">{study.title}</h3>
-                  <div className="w-8 h-0.5 bg-accent mt-4" />
+                  <div className="mt-4 h-0.5 w-8 bg-white/50" />
                 </div>
               </div>
             </div>

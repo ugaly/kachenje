@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Kachenje Law Firm | Professional Legal Services',
+  title: 'Kachenje Advocate | Professional Legal Services',
   description: 'We are certified law specialists providing expert legal services in civil, criminal, family, and business law with over 27 years of experience.',
   generator: 'v0.app',
   icons: {

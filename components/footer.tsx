@@ -4,62 +4,72 @@ import Link from "next/link"
 const importantLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Attorneys", href: "/attorneys" },
-  { name: "Careers", href: "/careers" },
-  { name: "Blog Element", href: "/blog" },
-  { name: "Shop", href: "/shop" },
+  { name: "Our Team", href: "/our-team" },
+  { name: "Practice Areas", href: "/practice-areas" },
+  { name: "Contact", href: "/contact" },
 ]
 
 const featuredServices = [
-  { name: "Business Law", href: "/practice-areas/business-law" },
-  { name: "Education Law", href: "/practice-areas/education-law" },
-  { name: "Family Law", href: "/practice-areas/family-law" },
-  { name: "Real Estate Construction Law", href: "/practice-areas/real-estate" },
-  { name: "Personal Injury Law", href: "/practice-areas/personal-injury" },
-  { name: "Insurance Defence", href: "/practice-areas/insurance" },
+  { name: "Arbitration", href: "/practice-areas/arbitration" },
+  { name: "Corporate Services", href: "/practice-areas/corporate-services" },
+  { name: "Real Estate", href: "/practice-areas/real-estate" },
+  { name: "Employment and Labour", href: "/practice-areas/employment-labour" },
+  { name: "Intellectual Property", href: "/practice-areas/intellectual-property" },
+  { name: "Banking and Financial Institutions", href: "/practice-areas/banking-financial-institutions" },
 ]
 
 export function Footer() {
   return (
-    <footer className="relative">
-      {/* Background Image with Dark Overlay */}
+    <footer className="relative border-t border-border">
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.pexels.com/photos/36207460/pexels-photo-36207460.jpeg"
-          alt="Footer background"
+          alt=""
           fill
-          loading="eager"
-          className="object-cover"
+          loading="lazy"
+          className="object-cover grayscale"
         />
-        <div className="absolute inset-0 bg-[#1a1a2e]/90" />
+        <div className="absolute inset-0 bg-black/85" />
       </div>
-      
-      {/* Main Footer */}
-      <div className="relative z-10 container mx-auto px-4 py-10 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-          {/* About Us */}
-          <div>
-            <h3 className="font-serif text-2xl text-white mb-6">About Us</h3>
-            <p className="text-white/70 text-sm leading-relaxed mb-6">
-              We&apos;re on a mission to build a better future where justice creates good for everyone.
+
+      <div className="relative z-10 container mx-auto px-4 py-10 sm:py-12 lg:py-20">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:grid-cols-4 lg:gap-x-12 lg:gap-y-0">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="mb-3 font-serif text-lg text-white sm:mb-4 sm:text-xl lg:mb-5 lg:text-2xl">
+              About Us
+            </h3>
+            <p className="mb-5 max-w-prose text-sm leading-relaxed text-white/75 sm:mb-6 lg:mb-8">
+              We are committed to clear counsel, disciplined advocacy, and outcomes that hold up in practice.
             </p>
-            <img
-              src="https://kachenje.co.tz/img/logo-big.png"
-              alt="Kachenje Law Firm"
-              style={{ height: '64px', width: 'auto' }}
-              className="brightness-0 invert"
+            <Image
+              src="/assets/logo/logo-big.png"
+              alt="Kachenje Advocate"
+              width={200}
+              height={72}
+              className="h-auto w-36 brightness-0 invert opacity-95 sm:w-40 lg:w-44"
             />
           </div>
 
-          {/* Important Links */}
-          <div>
-            <h3 className="font-serif text-2xl text-white mb-6">Important Links</h3>
-            <ul className="space-y-3">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="mb-3 font-serif text-lg text-white sm:mb-4 sm:text-xl lg:mb-5 lg:text-2xl">Links</h3>
+            <ul className="grid grid-cols-2 gap-x-3 gap-y-2.5 lg:hidden">
               {importantLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
-                    className="text-white/70 text-sm hover:text-accent transition-colors"
+                    className="flex min-h-10 items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-center text-xs font-medium leading-tight text-white/85 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul className="hidden space-y-2.5 lg:block lg:space-y-3">
+              {importantLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm leading-snug text-white/70 transition-colors hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -68,15 +78,16 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Featured Services */}
-          <div>
-            <h3 className="font-serif text-2xl text-white mb-6">Featured Services</h3>
-            <ul className="space-y-3">
+          <div className="hidden lg:block">
+            <h3 className="mb-3 font-serif text-lg text-white sm:mb-4 sm:text-xl lg:mb-5 lg:text-2xl">
+              Practice Areas
+            </h3>
+            <ul className="space-y-2.5 lg:space-y-3">
               {featuredServices.map((service) => (
                 <li key={service.name}>
-                  <Link 
+                  <Link
                     href={service.href}
-                    className="text-white/70 text-sm hover:text-accent transition-colors"
+                    className="text-sm leading-snug text-white/70 transition-colors hover:text-white [overflow-wrap:anywhere]"
                   >
                     {service.name}
                   </Link>
@@ -85,48 +96,50 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Us */}
-          <div>
-            <h3 className="font-serif text-2xl text-white mb-6">Contact Us</h3>
-            <div className="space-y-4 text-sm text-white/70">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="mb-3 font-serif text-lg text-white sm:mb-4 sm:text-xl lg:mb-5 lg:text-2xl">Contact</h3>
+            <div className="grid gap-3 text-sm text-white/75 sm:max-lg:grid-cols-2 sm:max-lg:gap-x-8 lg:block lg:space-y-4">
               <div>
-                <p className="font-medium text-white">Office Address</p>
-                <p>PO Box 16122 Collins Street West</p>
-                <p>Victoria 8007 Tanzania</p>
+                <p className="font-medium text-white">Office</p>
+                <p className="leading-snug">PPF Tower, 7th Floor</p>
+                <p className="leading-snug">Dar es Salaam, Tanzania</p>
               </div>
-              <div>
-                <p>Phone: 888 123-4587</p>
-              </div>
-              <div>
-                <p>Email: info@kachenje.co.tz</p>
+              <div className="flex flex-col gap-3">
+                <div>
+                  <p className="font-medium text-white lg:hidden">Phone</p>
+                  <p>
+                    <a href="tel:+255222115729" className="transition-colors hover:text-white">
+                      +255 22 211 5729
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <p className="font-medium text-white lg:hidden">Email</p>
+                  <p>
+                    <a href="mailto:info@kachenje.co.tz" className="break-all transition-colors hover:text-white">
+                      info@kachenje.co.tz
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="relative z-10 border-t border-white/20">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-white/70">
-              Kachenje Law Firm - {new Date().getFullYear()}
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-white/70 hover:text-accent transition-colors" aria-label="Google Plus">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8 10.4h3.6c-.1 1.5-.7 2.7-1.6 3.5-.9.8-2.1 1.2-3.4 1.2-1.4 0-2.6-.5-3.5-1.5-1-1-1.5-2.2-1.5-3.6s.5-2.6 1.5-3.6c1-.9 2.1-1.4 3.5-1.4 1.3 0 2.4.4 3.3 1.2l-1.3 1.3c-.5-.5-1.2-.8-2-.8-.9 0-1.6.3-2.2.9-.6.6-.9 1.4-.9 2.4s.3 1.8.9 2.4c.6.6 1.4.9 2.2.9.6 0 1.1-.1 1.5-.3.6-.3 1-.7 1.2-1.3H7.8v-1.3zm12.2.8v-1.6h-1.6v1.6h-1.6v1.6h1.6v1.6h1.6v-1.6h1.6v-1.6h-1.6z"/></svg>
-              </a>
-              <a href="#" className="text-white/70 hover:text-accent transition-colors" aria-label="Facebook">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-              </a>
-              <a href="#" className="text-white/70 hover:text-accent transition-colors" aria-label="Twitter">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-              </a>
-              <a href="#" className="text-white/70 hover:text-accent transition-colors" aria-label="Vimeo">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.4 7.03c-.1 2.2-1.63 5.2-4.6 9-.32.4-3.1 4.97-5.73 4.97-1.67 0-3.07-1.53-3.57-4.1-.63-3.33-1.33-5.83-2.1-7.5-.6-1.33-1.26-2-2-2-.16 0-.7.33-1.63 1l-1-1.27 3.5-3.1c1.5-1.33 2.7-2.03 3.6-2.1 1.9-.2 3.07 1.1 3.5 3.9.47 3.03.8 4.93 1 5.7.53 2.47 1.13 3.7 1.8 3.7.5 0 1.26-.8 2.26-2.4.97-1.6 1.5-2.83 1.57-3.67.13-1.4-.4-2.1-1.6-2.1-.57 0-1.17.13-1.8.4 1.2-3.9 3.47-5.8 6.83-5.7 2.5.07 3.67 1.7 3.5 4.87z"/></svg>
-              </a>
-            </div>
-          </div>
+      <div className="relative z-10 border-t border-white/10">
+        <div className="container mx-auto flex flex-col items-stretch justify-between gap-3 px-4 py-4 sm:flex-row sm:items-center sm:gap-4 sm:py-5 md:py-6">
+          <p className="text-center text-xs text-white/60 sm:text-left sm:text-sm">
+            Kachenje Advocate — {new Date().getFullYear()}
+          </p>
+          <a
+            href="https://wa.me/255754285547"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-center text-xs text-white/80 transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white sm:inline sm:text-sm"
+          >
+            WhatsApp
+          </a>
         </div>
       </div>
     </footer>

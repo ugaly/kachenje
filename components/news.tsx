@@ -19,7 +19,7 @@
 //             Recent News
 //           </h2>
 //           <p className="text-muted-foreground max-w-3xl mx-auto">
-//             Stay informed with the latest legal insights, industry updates, and news from Kachenje Law Firm. Our experts share valuable knowledge to help you navigate legal matters.
+//             Stay informed with the latest legal insights, industry updates, and news from Kachenje Advocate. Our experts share valuable knowledge to help you navigate legal matters.
 //           </p>
 //         </div>
 
@@ -224,7 +224,7 @@
 //             Recent News
 //           </h2>
 //           <p className="text-muted-foreground max-w-3xl mx-auto">
-//             Stay informed with the latest legal insights, industry updates, and news from Kachenje Law Firm. Our experts share valuable knowledge to help you navigate legal matters.
+//             Stay informed with the latest legal insights, industry updates, and news from Kachenje Advocate. Our experts share valuable knowledge to help you navigate legal matters.
 //           </p>
 //         </div>
 
@@ -486,7 +486,7 @@ export function News() {
             Recent News
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            Stay informed with the latest legal insights, industry updates, and news from Kachenje Law Firm. Our experts share valuable knowledge to help you navigate legal matters.
+            Stay informed with the latest legal insights, industry updates, and news from Kachenje Advocate. Our experts share valuable knowledge to help you navigate legal matters.
           </p>
         </div>
 

@@ -15,7 +15,7 @@
 //   },
 //   {
 //     icon: UserCheck,
-//     title: "Request an Attorney",
+//     title: "Request an Advocate",
 //     description: "Connect with our experienced legal professionals who specialize in your specific area of law for personalized representation.",
 //   },
 //   {
@@ -78,7 +78,7 @@
 //             }`}
 //           >
 //             <div className="flex-shrink-0">
-//               <service.icon className="h-14 w-14 lg:h-16 lg:w-16 text-accent" strokeWidth={1} />
+//               <service.icon className="h-14 w-14 lg:h-16 lg:w-16 text-foreground" strokeWidth={1} />
 //             </div>
 //             <div>
 //               <h3 className="font-serif text-xl lg:text-2xl text-foreground mb-3">
@@ -128,7 +128,7 @@
 //   },
 //   {
 //     icon: UserCheck,
-//     title: "Request an Attorney",
+//     title: "Request an Advocate",
 //     description:
 //       "Connect with our experienced legal professionals who specialize in your specific area of law for personalized representation.",
 //   },
@@ -269,7 +269,7 @@
 //             {/* Icon */}
 //             <div className="flex-shrink-0">
 //               <service.icon
-//                 className="h-12 w-12 lg:h-14 lg:w-14 text-accent"
+//                 className="h-12 w-12 lg:h-14 lg:w-14 text-foreground"
 //                 strokeWidth={1}
 //               />
 //             </div>
@@ -319,7 +319,7 @@
 //   },
 //   {
 //     icon: UserCheck,
-//     title: "Request an Attorney",
+//     title: "Request an Advocate",
 //     description:
 //       "Connect with our experienced legal professionals who specialize in your specific area of law for personalized representation.",
 //   },
@@ -482,7 +482,7 @@
 //           >
 //             <div className="flex-shrink-0">
 //               <service.icon
-//                 className="h-12 w-12 lg:h-14 lg:w-14 text-accent"
+//                 className="h-12 w-12 lg:h-14 lg:w-14 text-foreground"
 //                 strokeWidth={1}
 //               />
 //             </div>
@@ -530,7 +530,7 @@ const services = [
   },
   {
     icon: UserCheck,
-    title: "Request an Attorney",
+    title: "Request an Advocate",
     description:
       "Connect with our experienced legal professionals who specialize in your specific area of law for personalized representation.",
   },
@@ -601,48 +601,16 @@ function AnimatedCounter({
 /* ================= MAIN COMPONENT ================= */
 
 export function Stats() {
-  const bgRef = useRef<HTMLDivElement | null>(null)
-
-  // ✅ Parallax only on desktop, static on mobile
-  useEffect(() => {
-    const el = bgRef.current
-    if (!el) return
-
-    let ticking = false
-
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (window.innerWidth >= 768) {
-            const offset = window.scrollY * 0.15
-            el.style.backgroundPosition = `center ${-offset}px`
-          } else {
-            el.style.backgroundPosition = "center 0px"
-          }
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
   return (
     <section>
       {/* ================= STATS ================= */}
-      <div className="relative py-14 lg:py-20 overflow-hidden">
+      <div className="relative flex min-h-[40rem] flex-col justify-center overflow-hidden py-20 pb-32 sm:min-h-[36rem] sm:py-20 sm:pb-28 md:min-h-[38rem] md:py-24 md:pb-32 lg:min-h-[42rem] lg:py-24 lg:pb-36 xl:min-h-[44rem] xl:pb-40">
         {/* Background Image */}
         <div
-          ref={bgRef}
-          className="absolute inset-0"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage:
               "url('https://media.istockphoto.com/id/690153060/photo/stack-of-law-books-in-front-of-scales-of-justice.jpg?b=1&s=612x612&w=0&k=20&c=ThpV_mNr3Fl3YjOblmLMhdAnPS4eM3r3C8A4i-3Xkns=')",
-            backgroundSize: "cover",
-            backgroundPosition: "center 0px",
-            backgroundRepeat: "no-repeat",
           }}
         />
 
@@ -652,7 +620,7 @@ export function Stats() {
         </div>
 
         {/* Content */}
-        <div className="relative container mx-auto px-4 lg:px-8 xl:px-12">
+        <div className="relative container mx-auto px-4">
           <div className="max-w-3xl">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white italic leading-tight mb-4 lg:mb-6">
               Delivering Justice with Integrity & Excellence
@@ -695,7 +663,7 @@ export function Stats() {
           >
             <div className="flex-shrink-0">
               <service.icon
-                className="h-12 w-12 lg:h-14 lg:w-14 text-accent"
+                className="h-12 w-12 lg:h-14 lg:w-14 text-foreground"
                 strokeWidth={1}
               />
             </div>

@@ -14,12 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!area) {
     return {
-      title: "Practice Area Not Found | Kachenje Law Firm",
+      title: "Practice Area Not Found | Kachenje Advocate",
     }
   }
 
   return {
-    title: `${area.title} | Kachenje Law Firm`,
+    title: `${area.title} | Kachenje Advocate`,
     description: area.shortDescription,
   }
 }

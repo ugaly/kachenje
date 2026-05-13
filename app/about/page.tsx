@@ -24,7 +24,7 @@ const timelineEvents = [
   {
     year: "2018",
     title: "Foundation",
-    description: "Kachenje Law Firm was established by experienced legal practitioners united to form a leading edge boutique law firm in Tanzania.",
+    description: "Kachenje Advocate was established by experienced legal practitioners united to form a leading edge boutique practice in Tanzania.",
     icon: Building2,
   },
   {
@@ -117,10 +117,10 @@ export default function AboutPage() {
               <span className="text-accent">About Us</span>
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">
-              About Kachenje Law Firm
+              About Kachenje Advocate
             </h1>
             <p className="text-white/80 text-lg lg:text-xl max-w-2xl">
-              A leading boutique law firm providing exceptional legal services across Tanzania and beyond.
+              A leading boutique practice providing exceptional legal services across Tanzania and beyond.
             </p>
           </motion.div>
         </div>
@@ -138,10 +138,10 @@ export default function AboutPage() {
             >
               <span className="text-accent text-sm font-medium tracking-wider uppercase">Who We Are</span>
               <h2 className="font-serif text-3xl lg:text-4xl xl:text-5xl text-foreground mt-4 mb-6">
-                A Leading Boutique Law Firm in Tanzania
+                A Leading Boutique Practice in Tanzania
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                We are a duly registered and licensed law firm in Tanzania. Our firm encompasses experienced legal practitioners who united to form a leading edge boutique law firm of its own kind in its jurisdiction.
+                We are duly registered and licensed to practise in Tanzania. Our chambers bring together experienced legal practitioners who formed a leading boutique practice in its jurisdiction.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Bestowed with the requisite experience, skills and attitude, our lawyers are best positioned to provide the most adequate and relevant legal services in today&apos;s world.
@@ -149,7 +149,7 @@ export default function AboutPage() {
               <p className="text-muted-foreground leading-relaxed mb-8">
                 Within a brief period of our establishment, we have attained reasonable ranks in the corporate law regime; been specifically recognized for our tailor made solutions to our esteemed customers&apos; needs.
               </p>
-              <Link href="/attorneys">
+              <Link href="/our-team">
                 <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6">
                   Meet Our Team
                   <ChevronRight className="ml-2 h-4 w-4" />
@@ -167,7 +167,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
-                  alt="Kachenje Law Firm Office"
+                  alt="Kachenje Advocate office"
                   fill
                   className="object-cover"
                 />
@@ -341,13 +341,13 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/practice-areas">
-                <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-8 py-6">
+                <Button className="rounded-full bg-primary px-8 py-6 text-primary-foreground hover:bg-primary/90">
                   Our Practice Areas
                 </Button>
               </Link>
-              <Link href="/attorneys">
-                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white rounded-full px-8 py-6">
-                  Meet Our Attorneys
+              <Link href="/our-team">
+                <Button variant="outline" className="rounded-full border-foreground/20 px-8 py-6 hover:bg-muted">
+                  Meet Our Team
                 </Button>
               </Link>
             </div>

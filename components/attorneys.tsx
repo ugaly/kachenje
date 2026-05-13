@@ -57,22 +57,22 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
             <button
               className={
                 isMobile
-                  ? "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
-                  : "absolute top-4 left-4 z-20 bg-white/80 hover:bg-accent p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
+                  ? "absolute top-4 left-4 z-20 bg-white/90 hover:bg-muted p-2 rounded-full shadow transition-colors opacity-100 pointer-events-auto"
+                  : "absolute top-4 left-4 z-20 bg-white/90 hover:bg-muted p-2 rounded-full shadow transition-colors opacity-0 group-hover:opacity-100 pointer-events-auto"
               }
               aria-label="Show QR code"
               onClick={e => { e.stopPropagation(); }}
               type="button"
             >
-              <QrCode className="w-6 h-6 text-accent" />
+              <QrCode className="w-6 h-6 text-foreground" />
             </button>
           </DialogTrigger>
-          <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
+          <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-background shadow-2xl border border-border">
             <div className="flex flex-col items-center gap-2 w-full">
               <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-              <span className="text-accent-foreground text-sm mb-2">Get more details about {attorney.name}</span>
+              <span className="text-muted-foreground text-sm mb-2">Get more details about {attorney.name}</span>
             </div>
-            <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
+            <div className="rounded-xl bg-muted/50 p-3 shadow border border-border">
               <div className="relative inline-block">
                 <QRCodeSVG value={qrLink} size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -87,7 +87,7 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
               <span className="text-xs text-muted-foreground">{attorney.role}</span>
             </div>
             <div className="mt-4 text-center text-sm text-muted-foreground">
-              <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
+              <span className="mb-1 block font-medium text-foreground">Point your camera or QR app</span>
               <span>to instantly view the digital business card.</span>
             </div>
           </DialogContent>
@@ -112,7 +112,7 @@ function AttorneyCard({ attorney, onClick }: { attorney: Attorney; onClick: () =
             : 'absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors'
         } />
       </div>
-      <div className="bg-background py-6 lg:py-8 px-4 text-center border-t-2 border-transparent group-hover:border-accent transition-colors">
+      <div className="bg-background py-6 lg:py-8 px-4 text-center border-t-2 border-transparent group-hover:border-foreground/15 transition-colors">
         <h3 className="font-serif text-lg lg:text-xl text-foreground mb-1 group-hover:text-primary transition-colors">
           {attorney.name}
         </h3>
@@ -140,19 +140,19 @@ export function Attorneys() {
     <>
       <section className="bg-secondary">
         {/* Header */}
-        <div className="pt-16 lg:pt-20 pb-16 lg:pb-20 border-b border-border">
+        <div className="pt-8 pb-16 lg:pt-10 lg:pb-20 border-b border-border">
           <div className="container mx-auto px-4 lg:px-8 xl:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground italic">
-                Meet Our Qualified Attorneys
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground not-italic tracking-tight">
+                Our Team
               </h2>
               <div className="lg:border-l lg:border-border lg:pl-12">
-                <p className="text-muted-foreground lg:text-lg mb-6">
+                <p className="text-muted-foreground lg:text-lg mb-8 leading-relaxed">
                   Our team of experienced legal professionals is dedicated to providing exceptional legal services tailored to your needs. With expertise across multiple practice areas, we deliver results.
                 </p>
-                <Link href="/attorneys">
-                  <Button className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full px-6">
-                    VIEW ALL ATTORNEYS
+                <Link href="/our-team">
+                  <Button className="rounded-full bg-primary px-8 text-primary-foreground hover:bg-primary/90">
+                    View full team
                   </Button>
                 </Link>
               </div>
@@ -210,7 +210,7 @@ export function Attorneys() {
                   <h2 className="font-serif text-2xl text-white mb-2">
                     {selectedAttorney.name}
                   </h2>
-                  <p className="text-accent mb-6">{selectedAttorney.role}</p>
+                  <p className="text-white/90 mb-6">{selectedAttorney.role}</p>
 
                   {/* Contact Info */}
                   <div className="space-y-4">
@@ -218,14 +218,14 @@ export function Attorneys() {
                       href={`mailto:${selectedAttorney.email}`}
                       className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                     >
-                      <Mail className="h-5 w-5 text-accent" />
+                      <Mail className="h-5 w-5 text-white/90" />
                       <span className="text-sm">{selectedAttorney.email}</span>
                     </a>
                     <a
                       href={`tel:${selectedAttorney.phone}`}
                       className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
                     >
-                      <Phone className="h-5 w-5 text-accent" />
+                      <Phone className="h-5 w-5 text-white/90" />
                       <span className="text-sm">{selectedAttorney.phone}</span>
                     </a>
                   </div>
@@ -268,7 +268,7 @@ export function Attorneys() {
                   {/* Bio */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Scale className="h-5 w-5 text-accent" />
+                      <Scale className="h-5 w-5 text-foreground" />
                       About
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">
@@ -279,7 +279,7 @@ export function Attorneys() {
                   {/* Practice Areas */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Briefcase className="h-5 w-5 text-accent" />
+                      <Briefcase className="h-5 w-5 text-foreground" />
                       Areas of Expertise
                     </h3>
                     <div className="flex flex-wrap gap-2">
@@ -297,13 +297,13 @@ export function Attorneys() {
                   {/* Education */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <GraduationCap className="h-5 w-5 text-accent" />
+                      <GraduationCap className="h-5 w-5 text-foreground" />
                       Education
                     </h3>
                     <ul className="space-y-3">
                       {selectedAttorney.education.map((edu) => (
                         <li key={edu} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-accent mt-2" />
+                          <div className="w-2 h-2 rounded-full bg-foreground/40 mt-2" />
                           <span className="text-muted-foreground">{edu}</span>
                         </li>
                       ))}
@@ -313,13 +313,13 @@ export function Attorneys() {
                   {/* Experience */}
                   <div className="mb-8">
                     <h3 className="font-serif text-xl text-foreground mb-4 flex items-center gap-2">
-                      <Briefcase className="h-5 w-5 text-accent" />
+                      <Briefcase className="h-5 w-5 text-foreground" />
                       Experience
                     </h3>
                     <ul className="space-y-3">
                       {selectedAttorney.experience.map((exp) => (
                         <li key={exp} className="flex items-start gap-3">
-                          <div className="w-2 h-2 rounded-full bg-accent mt-2" />
+                          <div className="w-2 h-2 rounded-full bg-foreground/40 mt-2" />
                           <span className="text-muted-foreground">{exp}</span>
                         </li>
                       ))}
@@ -334,7 +334,7 @@ export function Attorneys() {
                         {selectedAttorney.categories.map((cat) => (
                           <span
                             key={cat}
-                            className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full"
+                            className="rounded-full border border-border bg-muted px-3 py-1 text-sm text-foreground"
                           >
                             {cat}
                           </span>
@@ -403,13 +403,13 @@ export function Attorneys() {
 //               onClick={e => e.stopPropagation()}
 //               type="button"
 //             >
-//               <QrCode className="w-6 h-6 text-accent" />
+//               <QrCode className="w-6 h-6 text-white/90" />
 //             </button>
 //           </DialogTrigger>
 //           <DialogContent className="flex flex-col items-center gap-4 max-w-xs p-8 rounded-2xl bg-white/60 backdrop-blur-xl shadow-2xl border-2 border-accent">
 //             <div className="flex flex-col items-center gap-2 w-full">
 //               <DialogTitle className="text-2xl font-serif text-primary mb-2">Scan QR Code</DialogTitle>
-//               <span className="text-accent-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
+//               <span className="text-white/90-foreground text-sm mb-2">Get more details about Nzaro Nuhu Kachenje</span>
 //             </div>
 //             <div className="rounded-xl bg-white p-3 shadow-lg border border-accent">
 //               <QRCodeSVG value="https://card-seven-pearl.vercel.app/13E8FD" size={180} fgColor="#1a1a2e" bgColor="#fff" level="H" includeMargin={true} />
@@ -419,7 +419,7 @@ export function Attorneys() {
 //               <span className="text-xs text-muted-foreground">Managing Partner</span>
 //             </div>
 //             <div className="mt-4 text-center text-sm text-muted-foreground">
-//               <span className="block font-medium text-accent mb-1">Point your camera or QR app</span>
+//               <span className="block font-medium text-white/90 mb-1">Point your camera or QR app</span>
 //               <span>to instantly view the digital business card.</span>
 //             </div>
 //           </DialogContent>
@@ -480,7 +480,7 @@ export function Attorneys() {
 //                 Our team of experienced legal professionals is dedicated to providing exceptional legal services tailored to your needs. With expertise across multiple practice areas, we deliver results.
 //               </p>
 //               <Link href="/attorneys">
-//                 <Button className="bg-accent text-accent-foreground rounded-full px-6">
+//                 <Button className="bg-accent text-white/90-foreground rounded-full px-6">
 //                   VIEW ALL ATTORNEYS
 //                 </Button>
 //               </Link>

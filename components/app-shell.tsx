@@ -76,7 +76,7 @@
 //           <div className="flex flex-col items-center gap-5 text-center">
 //             <img
 //               src="https://kachenje.co.tz/img/logo.png"
-//               alt="Kachenje Law Firm"
+//               alt="Kachenje Advocate"
 //               className="h-auto w-44 sm:w-52 md:w-60"
 //             />
 //             <div className="h-1.5 w-32 overflow-hidden rounded bg-white/20">
@@ -98,6 +98,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { usePathname } from "next/navigation"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
@@ -106,6 +107,8 @@ type AppShellProps = {
 }
 
 export function AppShell({ children }: AppShellProps) {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const [isLoading, setIsLoading] = useState(true)
   const [isLeaving, setIsLeaving] = useState(false)
   const finishedRef = useRef(false)
@@ -120,12 +123,11 @@ export function AppShell({ children }: AppShellProps) {
 
       window.setTimeout(() => {
         setIsLoading(false)
-      }, 800)
+      }, 400)
     }
 
-    const minimumDisplay = window.setTimeout(finishLoading, 8000)
-
-    const fallback = window.setTimeout(finishLoading, 8500)
+    const minimumDisplay = window.setTimeout(finishLoading, 900)
+    const fallback = window.setTimeout(finishLoading, 2000)
 
     return () => {
       window.clearTimeout(minimumDisplay)
@@ -156,7 +158,7 @@ export function AppShell({ children }: AppShellProps) {
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse" />
             <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-500" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-500" />
           </div>
 
           {/* Floating particles */}
@@ -180,10 +182,10 @@ export function AppShell({ children }: AppShellProps) {
             {/* Logo with glow effect */}
             <div className="relative group">
               <div className="absolute inset-0 bg-white/30 blur-2xl rounded-full animate-ping-slow" />
-              <div className="absolute inset-0 bg-accent/30 blur-xl rounded-full animate-pulse" />
+              <div className="absolute inset-0 bg-white/20 blur-xl rounded-full animate-pulse" />
               <img
                 src="https://kachenje.co.tz/img/logo.png"
-                alt="Kachenje Law Firm"
+                alt="Kachenje Advocate"
                 className="relative h-auto w-44 sm:w-52 md:w-60 drop-shadow-2xl animate-float-slow"
               />
             </div>
@@ -191,14 +193,14 @@ export function AppShell({ children }: AppShellProps) {
             {/* Animated text */}
             <div className="space-y-2">
               <h2 className="text-white/90 text-lg sm:text-xl font-medium tracking-wide animate-pulse-slow">
-                Kachenje Law Firm
+                Kachenje Advocate
               </h2>
               <p className="text-white/60 text-sm animate-fade-in-up">Delivering Justice with Excellence</p>
             </div>
 
             {/* Progress bar with shimmer effect */}
             <div className="w-48 sm:w-64 h-1.5 bg-white/20 rounded-full overflow-hidden relative">
-              <div className="h-full w-full bg-gradient-to-r from-accent via-accent/80 to-accent rounded-full animate-progress" />
+              <div className="h-full w-full bg-gradient-to-r from-white/60 via-white/40 to-white/60 rounded-full animate-progress" />
               <div className="absolute inset-0 w-20 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer" />
             </div>
 
@@ -227,8 +229,8 @@ export function AppShell({ children }: AppShellProps) {
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >
-        <Header />
-        <main>{children}</main>
+        {!isHome && <Header />}
+        {isHome ? children : <main className="min-h-0">{children}</main>}
         <Footer />
       </div>
 

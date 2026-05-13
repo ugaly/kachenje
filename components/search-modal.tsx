@@ -129,7 +129,7 @@
 
 //     // Search pages
 //     const pages = [
-//       { title: "About Us", description: "Learn about Kachenje Law Firm", href: "/about" },
+//       { title: "About Us", description: "Learn about Kachenje Advocate", href: "/about" },
 //       { title: "Contact Us", description: "Get in touch with our team", href: "/contact" },
 //       { title: "Our Attorneys", description: "Meet our qualified legal team", href: "/attorneys" },
 //       { title: "Practice Areas", description: "Explore our legal services", href: "/practice-areas" },
@@ -411,10 +411,9 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { Search, X, ArrowRight, Clock, TrendingUp, Users, Scale, FileText, Phone, ChevronRight, Sparkles, Star, Building, Briefcase, Newspaper, Award, Zap } from "lucide-react"
+import { Search, X, ArrowRight, Clock, TrendingUp, Users, Scale, Phone, ChevronRight, Sparkles, Star, Building, Briefcase, Award, Zap } from "lucide-react"
 import { practiceAreasData } from "@/lib/practice-areas-data"
 import { attorneys } from "@/lib/attorneys-data"
-import { blogPosts } from "@/lib/blog-data"
 
 interface SearchModalProps {
   isOpen: boolean
@@ -423,11 +422,10 @@ interface SearchModalProps {
 
 // Quick links for default view
 const quickLinks = [
-  { title: "About Us", href: "/about", icon: Users, description: "Learn about our firm", color: "from-blue-500 to-blue-600" },
-  { title: "Practice Areas", href: "/practice-areas", icon: Scale, description: "Explore our services", color: "from-green-500 to-green-600" },
-  { title: "Our Attorneys", href: "/attorneys", icon: Users, description: "Meet our legal team", color: "from-purple-500 to-purple-600" },
-  { title: "Blog & Insights", href: "/blog", icon: FileText, description: "Latest legal news", color: "from-orange-500 to-orange-600" },
-  { title: "Contact Us", href: "/contact", icon: Phone, description: "Get in touch", color: "from-red-500 to-red-600" },
+  { title: "About Us", href: "/about", icon: Users, description: "Learn about our firm", color: "from-neutral-600 to-neutral-800" },
+  { title: "Practice Areas", href: "/practice-areas", icon: Scale, description: "Explore our services", color: "from-neutral-500 to-neutral-700" },
+  { title: "Our Team", href: "/our-team", icon: Users, description: "Meet our legal team", color: "from-neutral-600 to-neutral-800" },
+  { title: "Contact Us", href: "/contact", icon: Phone, description: "Get in touch", color: "from-neutral-700 to-neutral-900" },
 ]
 
 // Popular searches
@@ -442,13 +440,13 @@ const popularSearches = [
 
 // Featured content
 const featuredContent = [
-  { title: "Corporate Services", icon: Briefcase, href: "/practice-areas/corporate-services", description: "Expert corporate legal solutions" },
-  { title: "Our Attorneys", icon: Award, href: "/attorneys", description: "Meet our experienced team" },
-  { title: "Latest Insights", icon: Newspaper, href: "/blog", description: "Read our legal updates" },
+  { title: "Corporate Services", icon: Briefcase, href: "/practice-areas/corporate-services", description: "Corporate legal solutions" },
+  { title: "Our Team", icon: Award, href: "/our-team", description: "Meet our experienced team" },
+  { title: "Contact", icon: Phone, href: "/contact", description: "Reach the firm directly" },
 ]
 
 type SearchResult = {
-  type: "practice" | "attorney" | "blog" | "page"
+  type: "practice" | "attorney" | "page"
   title: string
   description: string
   href: string
@@ -528,30 +526,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
           type: "attorney",
           title: attorney.name,
           description: attorney.role,
-          href: "/attorneys",
+          href: "/our-team",
           image: attorney.image,
-          category: "Attorney",
-          score,
-        })
-      }
-    })
-
-    // Search blog posts with scoring
-    blogPosts.forEach((post) => {
-      let score = 0
-      if (post.title.toLowerCase().includes(q)) score += 100
-      if (post.excerpt.toLowerCase().includes(q)) score += 40
-      if (post.categories.some((c) => c.toLowerCase().includes(q))) score += 50
-      if (post.tags.some((t) => t.toLowerCase().includes(q))) score += 30
-      
-      if (score > 0) {
-        searchResults.push({
-          type: "blog",
-          title: post.title,
-          description: post.excerpt.slice(0, 100) + "...",
-          href: `/blog/${post.slug}`,
-          image: post.image,
-          category: "Blog Post",
+          category: "Team",
           score,
         })
       }
@@ -559,11 +536,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
     // Search pages
     const pages = [
-      { title: "About Us", description: "Learn about Kachenje Law Firm", href: "/about" },
+      { title: "About Us", description: "Learn about Kachenje Advocate", href: "/about" },
       { title: "Contact Us", description: "Get in touch with our team", href: "/contact" },
-      { title: "Our Attorneys", description: "Meet our qualified legal team", href: "/attorneys" },
+      { title: "Our Team", description: "Meet our qualified legal team", href: "/our-team" },
       { title: "Practice Areas", description: "Explore our legal services", href: "/practice-areas" },
-      { title: "Blog", description: "Latest news and insights", href: "/blog" },
     ]
 
     pages.forEach((page) => {
@@ -654,8 +630,6 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
         return <Scale className="h-5 w-5" />
       case "attorney":
         return <Users className="h-5 w-5" />
-      case "blog":
-        return <FileText className="h-5 w-5" />
       default:
         return <ArrowRight className="h-5 w-5" />
     }
@@ -686,14 +660,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
               {/* Search Input */}
               <div className="relative bg-gradient-to-r from-primary/5 to-primary/10">
                 <div className="absolute left-6 top-1/2 -translate-y-1/2">
-                  <Search className="h-6 w-6 text-accent" />
+                  <Search className="h-6 w-6 text-neutral-600" />
                 </div>
                 <input
                   ref={inputRef}
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search for legal services, attorneys, articles..."
+                  placeholder="Search practice areas, team members, and pages..."
                   className="w-full pl-14 pr-14 py-6 text-xl bg-transparent focus:outline-none placeholder:text-gray-400 font-medium"
                 />
                 {query && (
@@ -718,9 +692,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       <div className="space-y-2">
                         <div className="flex items-center justify-between mb-4">
                           <p className="text-sm text-gray-500">
-                            Found <span className="font-semibold text-accent">{results.length}</span> results for &quot;{query}&quot;
+                            Found <span className="font-semibold text-neutral-800">{results.length}</span> results for &quot;{query}&quot;
                           </p>
-                          <Sparkles className="h-4 w-4 text-accent" />
+                          <Sparkles className="h-4 w-4 text-neutral-500" />
                         </div>
                         {results.map((result, index) => (
                           <Link
@@ -730,7 +704,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             onClick={() => handleResultClick(result.title)}
                             className={`flex items-start gap-4 p-4 rounded-xl transition-all duration-200 group ${
                               selectedIndex === index 
-                                ? 'bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 shadow-md' 
+                                ? 'bg-neutral-100 border border-neutral-200 shadow-sm' 
                                 : 'hover:bg-gray-50'
                             }`}
                           >
@@ -745,10 +719,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                               </div>
                             ) : (
                               <div className={`w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                                result.type === 'practice' ? 'bg-blue-100 text-blue-600' :
-                                result.type === 'attorney' ? 'bg-purple-100 text-purple-600' :
-                                result.type === 'blog' ? 'bg-orange-100 text-orange-600' :
-                                'bg-green-100 text-green-600'
+                                result.type === 'practice' ? 'bg-neutral-200 text-neutral-800' :
+                                result.type === 'attorney' ? 'bg-neutral-200 text-neutral-800' :
+                                'bg-neutral-200 text-neutral-800'
                               }`}>
                                 {getTypeIcon(result.type)}
                               </div>
@@ -756,21 +729,20 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-2 flex-wrap">
                                 <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
-                                  result.type === 'practice' ? 'bg-blue-100 text-blue-700' :
-                                  result.type === 'attorney' ? 'bg-purple-100 text-purple-700' :
-                                  result.type === 'blog' ? 'bg-orange-100 text-orange-700' :
-                                  'bg-green-100 text-green-700'
+                                  result.type === 'practice' ? 'bg-neutral-200 text-neutral-800' :
+                                  result.type === 'attorney' ? 'bg-neutral-200 text-neutral-800' :
+                                  'bg-neutral-200 text-neutral-800'
                                 }`}>
                                   {result.category}
                                 </span>
                                 {result.matchScore && result.matchScore > 80 && (
-                                  <span className="text-xs flex items-center gap-1 text-yellow-600">
-                                    <Star className="h-3 w-3 fill-yellow-500" />
+                                  <span className="text-xs flex items-center gap-1 text-neutral-600">
+                                    <Star className="h-3 w-3 fill-neutral-400 text-neutral-500" />
                                     Top match
                                   </span>
                                 )}
                               </div>
-                              <h4 className="font-semibold text-gray-900 group-hover:text-accent transition-colors text-lg mb-1">
+                              <h4 className="font-semibold text-gray-900 group-hover:text-black transition-colors text-lg mb-1">
                                 {result.title}
                               </h4>
                               <p className="text-sm text-gray-500 line-clamp-1">
@@ -796,18 +768,18 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <div className="p-8">
                     {/* Welcome Message */}
                     <div className="mb-8 text-center">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full mb-4">
-                        <Zap className="h-4 w-4 text-accent" />
-                        <span className="text-sm text-accent font-medium">Search anything</span>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 rounded-full mb-4">
+                        <Zap className="h-4 w-4 text-neutral-600" />
+                        <span className="text-sm text-neutral-700 font-medium">Search anything</span>
                       </div>
                       <h3 className="text-2xl font-serif text-gray-900">What can we help you find?</h3>
-                      <p className="text-gray-500 mt-2">Search for practice areas, attorneys, or legal insights</p>
+                      <p className="text-gray-500 mt-2">Search practice areas, team members, and site pages</p>
                     </div>
 
                     {/* Featured Content */}
                     <div className="mb-8">
                       <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
-                        <Sparkles className="h-4 w-4 text-accent" />
+                        <Sparkles className="h-4 w-4 text-neutral-500" />
                         Featured
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -816,10 +788,10 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             key={item.title}
                             href={item.href}
                             onClick={onClose}
-                            className="group p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-200 hover:border-accent/50 hover:shadow-lg transition-all duration-300"
+                            className="group p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-200 hover:border-neutral-300 hover:shadow-lg transition-all duration-300"
                           >
-                            <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-3 group-hover:bg-accent group-hover:text-white transition-colors">
-                              <item.icon className="h-6 w-6 text-accent group-hover:text-white" />
+                            <div className="w-12 h-12 rounded-xl bg-neutral-100 flex items-center justify-center mb-3 group-hover:bg-neutral-900 group-hover:text-white transition-colors">
+                              <item.icon className="h-6 w-6 text-neutral-700 group-hover:text-white" />
                             </div>
                             <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
                             <p className="text-xs text-gray-500">{item.description}</p>
@@ -848,7 +820,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             <button
                               key={term}
                               onClick={() => handlePopularClick(term)}
-                              className="px-4 py-2 text-sm bg-gray-100 hover:bg-accent/10 hover:text-accent rounded-full transition-all duration-200"
+                              className="px-4 py-2 text-sm bg-gray-100 hover:bg-neutral-200 hover:text-neutral-900 rounded-full transition-all duration-200"
                             >
                               {term}
                             </button>
@@ -860,7 +832,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     {/* Popular Searches */}
                     <div className="mb-8">
                       <div className="flex items-center gap-2 mb-4">
-                        <TrendingUp className="h-4 w-4 text-accent" />
+                        <TrendingUp className="h-4 w-4 text-neutral-500" />
                         <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Popular Searches</h3>
                       </div>
                       <div className="flex flex-wrap gap-2">
@@ -868,7 +840,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           <button
                             key={term}
                             onClick={() => handlePopularClick(term)}
-                            className="px-5 py-2.5 text-sm border-2 border-gray-200 hover:border-accent hover:text-accent rounded-full transition-all duration-200 font-medium"
+                            className="px-5 py-2.5 text-sm border-2 border-gray-200 hover:border-neutral-400 hover:text-neutral-900 rounded-full transition-all duration-200 font-medium"
                           >
                             {term}
                           </button>
@@ -885,13 +857,13 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             key={link.href}
                             href={link.href}
                             onClick={onClose}
-                            className="group flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-200 hover:border-accent/50 hover:shadow-md transition-all duration-300"
+                            className="group flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-200 hover:border-neutral-300 hover:shadow-md transition-all duration-300"
                           >
                             <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${link.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                               <link.icon className="h-6 w-6 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h4 className="font-semibold text-gray-900 group-hover:text-accent transition-colors">{link.title}</h4>
+                              <h4 className="font-semibold text-gray-900 group-hover:text-neutral-950 transition-colors">{link.title}</h4>
                               <p className="text-xs text-gray-500">{link.description}</p>
                             </div>
                             <ArrowRight className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -916,7 +888,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                               <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/20" />
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 p-3 z-20">
-                              <h4 className="text-white text-sm font-medium group-hover:text-accent transition-colors line-clamp-2">
+                              <h4 className="text-white text-sm font-medium group-hover:text-white/95 transition-colors line-clamp-2">
                                 {area.title}
                               </h4>
                             </div>
